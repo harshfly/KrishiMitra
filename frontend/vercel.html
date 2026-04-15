@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#2E6B3E">
+<title>KrishiMitra — AI Agri Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESIGN SYSTEM — KrishiMitra v4.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --bg:       #F7F4EF;
+  --bg2:      #F0EDE6;
+  --ink:      #1A1208;
+  --ink2:     #3D2E1E;
+  --green:    #2E6B3E;
+  --green-dk: #1A3D24;
+  --green-md: #2E7D32;
+  --green-lt: #EAF3DE;
+  --green-xs: #F3FAF0;
+  --gold:     #C8A84B;
+  --gold-lt:  #FFF8E7;
+  --gold-dk:  #9A7A30;
+  --muted:    #6B5D4F;
+  --muted-lt: rgba(107,93,79,0.5);
+  --red:      #C62828;
+  --red-lt:   #FEE2E2;
+  --blue:     #1565C0;
+  --blue-lt:  #E3F2FD;
+  --border:   rgba(0,0,0,0.06);
+  --white:    #FFFFFF;
+  --shadow-s: 0 1px 8px rgba(26,18,8,0.06);
+  --shadow-m: 0 4px 20px rgba(26,18,8,0.09);
+  --shadow-l: 0 12px 40px rgba(26,18,8,0.14);
+  --shadow-g: 0 8px 28px rgba(46,107,62,0.32);
+  --shadow-o: 0 8px 28px rgba(200,168,75,0.28);
+  --r-sm: 12px; --r-md: 16px; --r-lg: 20px; --r-xl: 24px; --r-2xl: 32px; --r-3xl: 40px;
+  --font-body: 'DM Sans', sans-serif;
+  --font-disp: 'Space Grotesk', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:var(--font-body);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── SHELL ── */
+.shell{width:100%;max-width:430px;height:100dvh;margin:0 auto;background:var(--bg);position:relative;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:500px){body{background:#111;display:flex;align-items:center;justify-content:center}.shell{border-radius:44px;box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 40px 100px rgba(0,0,0,0.6)}}
+
+/* ── SCROLLABLE WRAP ── */
+.sw{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:100px}
+.sw::-webkit-scrollbar{display:none}
+
+/* ── SCREENS ── */
+.screen{display:none}
+.screen.active{display:block;animation:fadeUp .28s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── GLASS ── */
+.glass{background:rgba(255,255,255,0.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.45);box-shadow:var(--shadow-s)}
+.glass-dk{background:rgba(0,0,0,0.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.12)}
+
+/* ── TYPOGRAPHY ── */
+.disp{font-family:var(--font-disp)}
+.h1{font-family:var(--font-disp);font-size:28px;font-weight:700;letter-spacing:-.5px}
+.h2{font-family:var(--font-disp);font-size:22px;font-weight:700;letter-spacing:-.3px}
+.h3{font-family:var(--font-disp);font-size:17px;font-weight:700}
+.h4{font-family:var(--font-disp);font-size:14px;font-weight:700}
+.micro{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-lt)}
+.label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-lt)}
+.t-g{color:var(--green)}.t-o{color:var(--gold)}.t-r{color:var(--red)}.t-m{color:var(--muted)}.t-w{color:#fff}
+
+/* ── LAYOUT HELPERS ── */
+.row{display:flex;align-items:center}.row-b{display:flex;align-items:center;justify-content:space-between}.col{display:flex;flex-direction:column}
+.inner{padding:20px 18px}.inner-t{padding:20px 18px 0}.inner-sm{padding:14px 16px}
+.g4{gap:4px}.g6{gap:6px}.g8{gap:8px}.g10{gap:10px}.g12{gap:12px}.g14{gap:14px}.g16{gap:16px}.g20{gap:20px}
+.mt4{margin-top:4px}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt20{margin-top:20px}.mt24{margin-top:24px}
+.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}.mb20{margin-bottom:20px}
+.w100{width:100%}.tc{text-align:center}
+.divider{height:1px;background:var(--border);margin:16px 0}
+.no-scrollbar::-webkit-scrollbar{display:none}
+
+/* ── CARDS ── */
+.card{background:var(--white);border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-s)}
+.card-p{padding:18px}.card-p6{padding:22px}
+.gcard{background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.45);border-radius:var(--r-lg);box-shadow:var(--shadow-s);overflow:hidden}
+
+/* ── HERO CARD (green gradient) ── */
+.hero-card{background:linear-gradient(145deg,var(--green) 0%,var(--green-dk) 100%);border-radius:var(--r-xl);padding:22px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;right:0;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,0.13) 0%,transparent 65%);transform:translate(50px,-50px);pointer-events:none}
+.hero-card::after{content:'';position:absolute;bottom:0;left:0;width:140px;height:140px;background:radial-gradient(circle,rgba(200,168,75,0.18) 0%,transparent 70%);transform:translate(-30px,30px);pointer-events:none}
+.gold-card{background:linear-gradient(145deg,#7a5200 0%,#5a3a00 100%);border-radius:var(--r-xl);padding:22px;position:relative;overflow:hidden}
+.gold-card::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle,rgba(200,168,75,0.3) 0%,transparent 65%);transform:translate(40px,-40px);pointer-events:none}
+.dark-card{background:linear-gradient(145deg,#1A1208 0%,#2c1a0e 100%);border-radius:var(--r-xl);padding:22px;position:relative;overflow:hidden}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.bg-g{background:var(--green-lt);color:var(--green-md)}.bg-o{background:var(--gold-lt);color:var(--gold-dk)}.bg-r{background:var(--red-lt);color:var(--red)}.bg-b{background:var(--blue-lt);color:var(--blue)}.bg-m{background:var(--bg2);color:var(--muted)}.bg-w{background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.25)}
+
+/* ── SIGNALS ── */
+.sig{padding:6px 14px;border-radius:99px;font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap}
+.sig-s{background:var(--green);color:#fff}.sig-h{background:var(--gold);color:#fff}.sig-w{background:#1976d2;color:#fff}.sig-r{background:var(--red);color:#fff}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 22px;border:none;border-radius:var(--r-md);font-size:15px;font-weight:700;font-family:var(--font-body);cursor:pointer;transition:all .18s;letter-spacing:.01em;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-g{background:var(--green);color:#fff;box-shadow:var(--shadow-g)}.btn-g:hover{background:var(--green-dk)}
+.btn-o{background:var(--gold);color:#fff;box-shadow:var(--shadow-o)}.btn-o:hover{background:var(--gold-dk)}
+.btn-out{background:transparent;border:2px solid var(--green);color:var(--green)}.btn-out:hover{background:var(--green-lt)}
+.btn-ghost{background:var(--bg);color:var(--muted)}.btn-ghost:hover{background:var(--bg2)}
+.btn-w{background:#fff;color:var(--green);box-shadow:var(--shadow-m)}.btn-w:hover{background:var(--bg)}
+.btn-sm{height:40px;padding:0 16px;font-size:13px;border-radius:var(--r-sm)}
+.btn-lg{height:60px;font-size:17px;border-radius:18px}
+.btn-icon{width:44px;height:44px;padding:0;border-radius:var(--r-md);font-size:18px}
+.btn-full{width:100%}
+
+/* ── INPUTS ── */
+.field-wrap{margin-bottom:16px}
+.field-lbl{font-size:10px;font-weight:700;color:var(--muted-lt);text-transform:uppercase;letter-spacing:.15em;margin-bottom:7px;display:block;padding-left:2px}
+.field{width:100%;height:52px;padding:0 16px;background:var(--bg);border-radius:var(--r-md);border:1.5px solid transparent;font-size:15px;font-weight:600;font-family:var(--font-body);color:var(--ink);outline:none;appearance:none;transition:all .18s}
+.field:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 3px rgba(46,107,62,.12)}
+.field::placeholder{color:rgba(107,93,79,.4);font-weight:500}
+.sel-wrap{position:relative}.sel-wrap::after{content:'▾';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:13px}
+
+/* ── PRICE ROW ── */
+.pr{background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.45);border-radius:var(--r-lg);padding:16px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-s)}
+.pr:active{transform:scale(.98);box-shadow:none}
+.pr-em{width:46px;height:46px;background:var(--bg);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:inset 0 1px 3px rgba(0,0,0,.06)}
+.pr-name{font-family:var(--font-disp);font-size:15px;font-weight:700;color:var(--ink)}
+.pr-sub{font-size:10px;font-weight:600;color:rgba(107,93,79,.5);margin-top:2px}
+.pr-price{font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--ink)}
+.pr-unit{font-size:10px;color:rgba(107,93,79,.4);font-weight:600}
+.chg{display:inline-flex;align-items:center;gap:2px;padding:3px 8px;border-radius:7px;font-size:10px;font-weight:700;margin-top:4px}
+.chg-u{background:var(--green-lt);color:var(--green-md)}.chg-d{background:var(--red-lt);color:var(--red)}.chg-f{background:var(--bg2);color:var(--muted)}
+
+/* ── MANDI CARD ── */
+.mc{background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.45);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-s)}
+.mc:active{transform:scale(.98)}
+.mc-rank{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-size:18px;font-weight:700;flex-shrink:0}
+.mr1{background:var(--gold);color:#fff}.mr2{background:var(--bg2);border:1px solid var(--border);color:var(--muted)}.mr3{background:var(--bg2);border:1px solid var(--border);color:var(--muted)}
+
+/* ── CHIP ROW ── */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:9px 18px;border-radius:12px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer;transition:all .18s;flex-shrink:0;border:none;font-family:var(--font-body)}
+.chip-a{background:var(--green);color:#fff;box-shadow:var(--shadow-g)}
+.chip-i{background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.45);color:var(--muted)}
+.chip:active{transform:scale(.95)}
+
+/* ── SVG CHARTS ── */
+.chart-wrap{position:relative;width:100%}
+
+/* ── NAV ── */
+.nav-wrap{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);width:92%;max-width:406px;z-index:50}
+.nav-inner{background:rgba(255,255,255,.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,.7);border-radius:var(--r-xl);padding:8px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 -2px 24px rgba(26,18,8,.07),0 10px 40px rgba(26,18,8,.12)}
+.nt{width:54px;height:54px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;transition:all .2s cubic-bezier(.16,1,.3,1);border:none;background:transparent;font-family:var(--font-body);position:relative}
+.nt:active{transform:scale(.92)}
+.nt.active{background:var(--green-lt)}
+.nt-icon{font-size:20px;transition:transform .2s}
+.nt.active .nt-icon{transform:scale(1.12)}
+.nt-lbl{font-size:9px;font-weight:700;color:var(--muted-lt);letter-spacing:.04em}
+.nt.active .nt-lbl{color:var(--green)}
+.nt-dot{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--green);border-radius:50%;display:none}
+.nt.active .nt-dot{display:block}
+.nt-special{width:54px;height:54px;background:var(--green);border-radius:16px;display:flex;align-items:center;justify-content:center;border:4px solid var(--bg);cursor:pointer;box-shadow:var(--shadow-g);transition:all .2s;margin-top:-22px;font-size:22px}
+.nt-special:active{transform:scale(.92)}
+
+/* ── VOICE ── */
+.v-orb{width:108px;height:108px;border-radius:50%;background:linear-gradient(145deg,#3d8c48,var(--green));display:flex;align-items:center;justify-content:center;font-size:44px;cursor:pointer;border:5px solid rgba(255,255,255,.55);box-shadow:var(--shadow-g);transition:all .2s;position:relative;margin:0 auto}
+.v-orb::before,.v-orb::after{content:'';position:absolute;border-radius:50%;border:2px solid rgba(46,107,62,.18)}
+.v-orb::before{inset:-14px}.v-orb::after{inset:-28px;border-color:rgba(46,107,62,.09)}
+.v-orb.on{animation:vPulse 1.2s ease-out infinite}
+@keyframes vPulse{0%{box-shadow:0 0 0 0 rgba(46,107,62,.5),var(--shadow-g)}70%{box-shadow:0 0 0 30px rgba(46,107,62,0),var(--shadow-g)}100%{box-shadow:0 0 0 0 rgba(46,107,62,0),var(--shadow-g)}}
+
+/* ── CHAT ── */
+.chat-you{background:var(--green);color:#fff;border-radius:20px 20px 6px 20px;padding:12px 16px;max-width:82%;font-size:14px;font-weight:600;align-self:flex-end;line-height:1.5}
+.chat-bot{background:#fff;border:1px solid var(--border);border-radius:20px 20px 20px 6px;padding:12px 16px;max-width:88%;font-size:14px;font-weight:500;color:var(--ink2);box-shadow:var(--shadow-s);line-height:1.5}
+.chat-meta{font-size:9px;font-weight:700;color:var(--muted-lt);text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px}
+.qa{padding:9px 16px;border-radius:99px;border:2px solid var(--green-lt);color:var(--green);background:#fff;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;font-family:var(--font-body)}
+.qa:active{background:var(--green-lt)}
+
+/* ── SCAN ── */
+.scan-zone{border:3px dashed rgba(46,107,62,.28);border-radius:var(--r-xl);background:var(--green-xs);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;padding:24px;transition:all .2s;min-height:180px}
+.scan-zone:active{border-color:var(--green);background:rgba(46,107,62,.1)}
+
+/* ── PROGRESS ── */
+.prog-t{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.prog-f{height:100%;border-radius:99px;transition:width .6s ease}
+.pf-g{background:linear-gradient(90deg,#3d8c48,var(--green))}
+.pf-o{background:linear-gradient(90deg,var(--gold),var(--gold-dk))}
+.pf-r{background:linear-gradient(90deg,#e67575,var(--red))}
+.pf-b{background:linear-gradient(90deg,#42a5f5,var(--blue))}
+
+/* ── SHAP BARS ── */
+.shap-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.shap-lbl{font-size:11px;font-weight:600;color:var(--ink2);width:145px;flex-shrink:0}
+.shap-t{flex:1;height:20px;background:var(--bg2);border-radius:6px;overflow:hidden}
+.shap-f{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:#fff;transition:width .6s}
+.shap-p{background:linear-gradient(90deg,#3d8c48,var(--green))}.shap-n{background:linear-gradient(90deg,#e67575,var(--red))}
+
+/* ── PAGE HEADER ── */
+.ph{background:var(--green);padding:16px 18px 22px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ph-back{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:none;color:#fff;transition:background .15s;flex-shrink:0}
+.ph-back:active{background:rgba(255,255,255,.28)}
+.ph-title{font-family:var(--font-disp);font-size:18px;font-weight:700;color:#fff;flex:1}
+.ph-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:none;color:#fff}
+
+/* ── ALERT BANNERS ── */
+.ab{border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ab-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.ab-title{font-size:13px;font-weight:800;color:var(--ink)}
+.ab-body{font-size:12px;line-height:1.55;font-weight:500;color:var(--muted);margin-top:3px}
+.ab-g{background:var(--green-lt);border-left:4px solid var(--green)}
+.ab-o{background:var(--gold-lt);border-left:4px solid var(--gold)}
+.ab-r{background:var(--red-lt);border-left:4px solid var(--red)}
+.ab-b{background:var(--blue-lt);border-left:4px solid var(--blue)}
+
+/* ── SCHEME CARD ── */
+.sc-card{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow-s);cursor:pointer;transition:all .18s}
+.sc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:11px}
+
+/* ── HOLD/SELL ROW ── */
+.hs{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-lg);padding:16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-s)}
+
+/* ── POST CARD ── */
+.post{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow-s)}
+.post-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+
+/* ── MINI STAT ── */
+.mstat{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-lg);padding:16px;display:flex;flex-direction:column;justify-content:space-between;min-height:96px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-s)}
+.mstat:active{transform:scale(.97)}
+.mstat-icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+.mstat-val{font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink);margin-top:2px}
+
+/* ── TICKER CARD ── */
+.tick{min-width:140px;flex-shrink:0;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-lg);padding:15px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-s)}
+.tick:active{transform:scale(.97);box-shadow:none}
+
+/* ── SPARKLINE SVG ── */
+.spark{width:80px;height:28px;margin-top:8px}
+
+/* ── FORECAST BARS ── */
+.fb-wrap{display:flex;align-items:flex-end;gap:4px;height:90px}
+.fb-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.fb{width:100%;border-radius:6px 6px 0 0;min-height:4px;background:linear-gradient(180deg,#3d8c48,var(--green));transition:height .5s ease}
+.fb-t{background:linear-gradient(180deg,var(--gold),var(--gold-dk))}
+.fb-r{background:linear-gradient(180deg,#ef5350,var(--red))}
+.fb-day{font-size:9px;font-weight:700;color:var(--muted)}
+.fb-val{font-size:9px;font-weight:700;color:var(--ink2)}
+.fb-pk{font-size:9px;font-weight:800;color:var(--green)}
+
+/* ── DONUT CHART ── */
+.donut-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.donut-center{position:absolute;text-align:center}
+
+/* ── CR ROW (calculator) ── */
+.cr{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.cr:last-child{border:none}
+.cr-l{font-size:13px;font-weight:600;color:var(--ink2)}
+.cr-v{font-family:var(--font-disp);font-size:15px;font-weight:700;color:var(--ink)}
+.cr-v.profit{color:var(--green);font-size:22px}.cr-v.loss{color:var(--red)}
+
+/* ── LANG OVERLAY ── */
+.lang-overlay{position:fixed;inset:0;z-index:200;background:rgba(26,18,8,.45);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:16px}
+.lang-overlay.open{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lang-sheet{width:100%;max-width:430px;background:var(--white);border-radius:var(--r-2xl) var(--r-2xl) 0 0;padding:28px 22px 48px;animation:sheetUp .35s cubic-bezier(.16,1,.3,1)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.lang-handle{width:38px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 22px}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.lang-btn{padding:16px;border-radius:16px;border:2px solid transparent;background:var(--bg);cursor:pointer;text-align:center;transition:all .18s;font-family:var(--font-body)}
+.lang-btn:active{transform:scale(.97)}
+.lang-btn.sel{border-color:var(--green);background:var(--green-lt)}
+
+/* ── LOGIN ── */
+.login-wrap{min-height:100%;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.login-bg{position:absolute;inset:0;pointer-events:none}
+
+/* ── WEATHER ── */
+.weather-card{background:linear-gradient(145deg,#1565c0,#0d47a1);border-radius:var(--r-xl);padding:20px;color:#fff;position:relative;overflow:hidden}
+.weather-card::before{content:'';position:absolute;top:0;right:0;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,.12) 0%,transparent 65%);transform:translate(50px,-50px);pointer-events:none}
+
+/* ── ANIMATE IN ── */
+.ani{opacity:0;transform:translateY(16px);animation:aniUp .5s cubic-bezier(.16,1,.3,1) forwards}
+.ani:nth-child(1){animation-delay:.05s}.ani:nth-child(2){animation-delay:.1s}.ani:nth-child(3){animation-delay:.15s}.ani:nth-child(4){animation-delay:.2s}.ani:nth-child(5){animation-delay:.25s}.ani:nth-child(6){animation-delay:.3s}
+@keyframes aniUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── SPIN ── */
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.spin{animation:spin 1s linear infinite;display:inline-block}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.blink{animation:blink 1.4s infinite}
+
+/* ── NOTIFICATION DOT ── */
+.notif-dot{position:relative}
+.notif-dot::after{content:'';position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--gold);border-radius:50%;border:2px solid #fff;animation:blink 1.4s infinite}
+
+/* ── MSP TABLE ── */
+.msp-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-bottom:1px solid rgba(0,0,0,.04)}
+.msp-row:last-child{border:none}
+
+/* ── PORTFOLIO ITEM ── */
+.port-item{background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.45);border-radius:var(--r-md);padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-s)}
+
+/* ─ PULSE RING ── */
+@keyframes ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+.ping{animation:ping 1.6s cubic-bezier(0,0,.2,1) infinite}
+
+/* ── SCORE RING ── */
+.score-ring{display:flex;align-items:center;justify-content:center;position:relative;width:80px;height:80px}
+</style>
+
+<!-- ════════════════════════════════════════════════════════════
+     APP HTML
+════════════════════════════════════════════════════════════ -->
+
+<!-- LANGUAGE OVERLAY (global) -->
+<div class="lang-overlay" id="langOverlay" onclick="closeLangBg(event)">
+  <div class="lang-sheet">
+    <div class="lang-handle"></div>
+    <div class="h3">भाषा चुनें · Choose Language</div>
+    <div class="label mt4" style="color:var(--muted)">Select your preferred language</div>
+    <div class="lang-grid">
+      <div class="lang-btn sel" onclick="setLang('hi','हिंदी','🇮🇳',this)"><div style="font-size:26px;margin-bottom:6px">🇮🇳</div><div style="font-size:15px;font-weight:800;color:var(--ink)">हिंदी</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Hindi</div></div>
+      <div class="lang-btn" onclick="setLang('en','English','🇬🇧',this)"><div style="font-size:26px;margin-bottom:6px">🇬🇧</div><div style="font-size:15px;font-weight:800;color:var(--ink)">English</div><div style="font-size:11px;color:var(--muted);margin-top:2px">English</div></div>
+      <div class="lang-btn" onclick="setLang('mr','मराठी','🟠',this)"><div style="font-size:26px;margin-bottom:6px">🟠</div><div style="font-size:15px;font-weight:800;color:var(--ink)">मराठी</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Marathi</div></div>
+      <div class="lang-btn" onclick="setLang('pa','ਪੰਜਾਬੀ','🌾',this)"><div style="font-size:26px;margin-bottom:6px">🌾</div><div style="font-size:15px;font-weight:800;color:var(--ink)">ਪੰਜਾਬੀ</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Punjabi</div></div>
+      <div class="lang-btn" onclick="setLang('gu','ગુજરાતી','🦁',this)"><div style="font-size:26px;margin-bottom:6px">🦁</div><div style="font-size:15px;font-weight:800;color:var(--ink)">ગુજરાતી</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Gujarati</div></div>
+      <div class="lang-btn" onclick="setLang('ta','தமிழ்','🌴',this)"><div style="font-size:26px;margin-bottom:6px">🌴</div><div style="font-size:15px;font-weight:800;color:var(--ink)">தமிழ்</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Tamil</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     LOGIN SCREEN (shown first)
+═══════════════════════════════ -->
+<div id="loginWrap" style="position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center">
+  <div style="width:100%;max-width:430px;height:100dvh;overflow-y:auto;display:flex;flex-direction:column;position:relative;overflow:hidden">
+    <!-- Background decorative blobs -->
+    <div style="position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(46,107,62,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(200,168,75,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none"></div>
+
+    <!-- SPLASH Content -->
+    <div id="splashScreen" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px">
+      <!-- Logo -->
+      <div style="width:88px;height:88px;background:#fff;border-radius:28px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-l);margin-bottom:32px;border:1px solid rgba(0,0,0,.04)">
+        <div style="width:56px;height:56px;background:linear-gradient(145deg,var(--green),var(--green-dk));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:var(--shadow-g)">🌾</div>
+      </div>
+      <div style="font-family:var(--font-disp);font-size:42px;font-weight:700;color:var(--ink);letter-spacing:-1.5px;margin-bottom:8px">Krishi<span style="color:var(--green)">Mitra</span></div>
+      <div class="label" style="margin-bottom:6px">AI-Powered Agri Intelligence</div>
+      <div style="font-size:14px;color:var(--muted);text-align:center;max-width:280px;line-height:1.7;margin-bottom:48px">Empowering <strong style="color:var(--green)">Indian farmers</strong> with real-time prices, AI forecasts & smart mandi routing.</div>
+
+      <!-- Language row -->
+      <div class="row g8 mb20" style="flex-wrap:wrap;justify-content:center">
+        <span style="font-size:12px;font-weight:700;color:var(--muted)">हिंदी</span>
+        <span style="color:var(--border)">·</span>
+        <span style="font-size:12px;font-weight:700;color:var(--muted)">English</span>
+        <span style="color:var(--border)">·</span>
+        <span style="font-size:12px;font-weight:700;color:var(--muted)">मराठी</span>
+        <span style="color:var(--border)">·</span>
+        <span style="font-size:12px;font-weight:700;color:var(--muted)">ਪੰਜਾਬੀ</span>
+      </div>
+
+      <div class="col g12 w100">
+        <button class="btn btn-g btn-lg btn-full" onclick="showLoginForm()">Get Started →</button>
+        <button class="btn btn-out btn-lg btn-full" onclick="showLoginForm()">Sign In</button>
+      </div>
+      <div style="margin-top:24px;font-size:11px;color:rgba(107,93,79,.4);text-align:center">By continuing you agree to our Terms & Privacy Policy</div>
+    </div>
+
+    <!-- LOGIN FORM (hidden initially) -->
+    <div id="loginForm" style="display:none;flex:1;flex-direction:column;padding:32px 28px">
+      <button onclick="showSplash()" style="background:var(--bg);border:none;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:var(--muted);margin-bottom:24px">←</button>
+      <div class="h2 mb4">Welcome back 👋</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:32px">Sign in to your KrishiMitra account</div>
+
+      <div class="field-wrap"><label class="field-lbl">Mobile Number / मोबाइल</label><input class="field" type="tel" placeholder="Enter 10-digit number" maxlength="10"></div>
+      <div class="field-wrap"><label class="field-lbl">Password / पासवर्ड</label><input class="field" type="password" placeholder="Enter your password"></div>
+
+      <div class="row-b mb20" style="margin-top:-8px">
+        <div class="row g6"><input type="checkbox" id="remMe" style="accent-color:var(--green)"><label for="remMe" style="font-size:12px;font-weight:600;color:var(--muted)">Remember me</label></div>
+        <span style="font-size:12px;font-weight:700;color:var(--green);cursor:pointer">Forgot password?</span>
+      </div>
+
+      <button class="btn btn-g btn-lg btn-full" onclick="doLogin()" id="loginBtn">Sign In →</button>
+      <div style="text-align:center;margin:20px 0;font-size:12px;color:var(--muted-lt)">— OR —</div>
+      <!-- Google style button -->
+      <button class="btn btn-full btn-lg" style="background:#fff;border:1.5px solid var(--border);color:var(--ink);box-shadow:var(--shadow-s)" onclick="doLogin()">
+        <span style="font-size:20px">🅶</span> Continue with Google
+      </button>
+      <div style="text-align:center;margin-top:24px;font-size:13px;color:var(--muted)">Don't have an account? <span style="color:var(--green);font-weight:700;cursor:pointer">Register Free</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     MAIN APP SHELL
+═══════════════════════════════ -->
+<div class="shell" id="appShell" style="display:none">
+  <div class="sw" id="sw">
+
+    <!-- ═══ HOME ═══ -->
+    <div class="screen active" id="screen-home">
+      <div class="inner">
+
+        <!-- Top bar -->
+        <div class="row-b mb16 ani">
+          <div class="col g4">
+            <div class="micro">KrishiMitra AI · v4.0</div>
+            <div class="h1">Namaste, <span class="t-g">Ramesh</span> 🙏</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">📍 Indore, MP · <span class="t-g" style="font-weight:700">●</span> Live</div>
+          </div>
+          <div class="row g8">
+            <button class="btn btn-icon glass" onclick="openLang()" title="Language" style="font-size:16px">🌐</button>
+            <button class="btn btn-icon glass notif-dot" onclick="goTo('alerts')" style="font-size:18px">🔔</button>
+            <div onclick="navTo('profile')" style="width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,var(--green),var(--green-dk));display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-size:18px;font-weight:700;color:#fff;box-shadow:var(--shadow-g);cursor:pointer">R</div>
+          </div>
+        </div>
+
+        <!-- AI Hero card -->
+        <div class="hero-card mb12 ani" onclick="goTo('forecast')">
+          <div style="position:relative;z-index:1">
+            <div class="row g8 mb12">
+              <div class="badge bg-w"><span style="width:6px;height:6px;background:#a8e063;border-radius:50%;display:inline-block" class="blink"></span> AI Intelligence</div>
+              <div class="badge bg-w">Live · LSTM+GRU</div>
+            </div>
+            <div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px">Hold your <span style="color:var(--gold)">Onion</span> stock<br>for 8 more days 📈</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.65;max-width:88%">AI predicts a <strong style="color:#fff">9.2% surge</strong> due to low rainfall + Diwali demand in Nashik & Indore mandis.</div>
+            <div style="border-top:1px solid rgba(255,255,255,.15);margin-top:18px;padding-top:16px;display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div class="micro" style="color:rgba(255,255,255,.4)">Target Price</div>
+                <div style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:var(--gold);margin-top:3px">₹3,120 <span style="font-size:12px;font-weight:400;color:rgba(255,255,255,.35)">/quintal</span></div>
+              </div>
+              <div style="width:44px;height:44px;background:#fff;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-m)">↗</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Alert -->
+        <div class="ab ab-r mb12 ani"><div class="ab-icon">⚠️</div><div><div class="ab-title">आलू: अभी बेचिए! Sell Potato NOW</div><div class="ab-body">MSP ₹1,500 approaching. Current ₹1,650 → dropping. Sell before further loss.</div></div></div>
+
+        <!-- 4-stat bento -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px" class="ani">
+          <div class="mstat" onclick="goTo('prices')">
+            <div class="mstat-icon" style="background:var(--green-lt)">📈</div>
+            <div><div class="micro">Market Trend</div><div class="mstat-val t-g">Bullish ↑</div></div>
+          </div>
+          <div class="mstat" onclick="goTo('mandi')">
+            <div class="mstat-icon" style="background:var(--gold-lt)">🏆</div>
+            <div><div class="micro">Best Mandi</div><div class="mstat-val">Indore</div></div>
+          </div>
+          <div class="mstat" onclick="goTo('forecast')">
+            <div class="mstat-icon" style="background:var(--blue-lt)">🎯</div>
+            <div><div class="micro">AI Accuracy</div><div class="mstat-val" style="color:var(--blue)">87.3%</div></div>
+          </div>
+          <div class="mstat" onclick="goTo('schemes')">
+            <div class="mstat-icon" style="background:var(--red-lt)">🏛️</div>
+            <div><div class="micro">Eligible Schemes</div><div class="mstat-val t-r">3 Active</div></div>
+          </div>
+        </div>
+
+        <!-- Weather card -->
+        <div class="weather-card mb12 ani">
+          <div style="position:relative;z-index:1">
+            <div class="row-b mb8">
+              <div>
+                <div class="micro" style="color:rgba(255,255,255,.5);margin-bottom:4px">📍 Indore, MP · IMD Data</div>
+                <div style="font-family:var(--font-disp);font-size:46px;font-weight:600;color:#fff;letter-spacing:-2px;line-height:1">24°</div>
+                <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,.85);margin-top:4px">⛅ Partly Cloudy</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:2px">Good for harvesting today</div>
+              </div>
+              <div style="font-size:64px;opacity:.85;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))">⛅</div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:14px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center">
+              <div><div style="font-size:14px;font-weight:800;color:#fff">72%</div><div class="micro" style="color:rgba(255,255,255,.45);margin-top:2px">Humidity</div></div>
+              <div><div style="font-size:14px;font-weight:800;color:#fff">8mm</div><div class="micro" style="color:rgba(255,255,255,.45);margin-top:2px">Rainfall</div></div>
+              <div><div style="font-size:14px;font-weight:800;color:#fff">1012</div><div class="micro" style="color:rgba(255,255,255,.45);margin-top:2px">hPa</div></div>
+              <div><div style="font-size:14px;font-weight:800;color:#fff">14km</div><div class="micro" style="color:rgba(255,255,255,.45);margin-top:2px">Wind</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Price Prediction section -->
+        <div class="row-b mb12 ani">
+          <div class="h3">AI Price Prediction</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('forecast')">See All →</span>
+        </div>
+
+        <!-- Prediction card with mini bar chart -->
+        <div class="gcard card-p6 mb12 ani">
+          <div class="row-b mb14">
+            <div class="row g12">
+              <div style="width:44px;height:44px;background:var(--bg);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px">🌾</div>
+              <div><div class="h4">Wheat · गेहूं</div><div class="micro mt4">Next 30 days</div></div>
+            </div>
+            <div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--green)">₹2,350</div><div style="font-size:10px;font-weight:700;color:var(--green)">+₹200 expected</div></div>
+          </div>
+          <div class="prog-t mb8"><div class="prog-f pf-o" style="width:75%"></div></div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">High confidence <strong style="color:var(--ink)">88%</strong> — low buffer stock + upcoming festival demand from Madhya Pradesh mandis.</div>
+          <!-- Mini forecast bars -->
+          <div class="fb-wrap mt16" style="height:60px">
+            <div class="fb-col"><div class="fb fb-t" style="height:60%"></div><div class="fb-day">W1</div></div>
+            <div class="fb-col"><div class="fb" style="height:68%"></div><div class="fb-day">W2</div></div>
+            <div class="fb-col"><div class="fb" style="height:74%"></div><div class="fb-day">W3</div></div>
+            <div class="fb-col"><div class="fb" style="height:82%"></div><div class="fb-day">W4</div></div>
+          </div>
+        </div>
+
+        <!-- Live market ticker (horizontal scroll) -->
+        <div class="row-b mb12 ani">
+          <div class="h3">Live Market</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="navTo('prices')">View All →</span>
+        </div>
+        <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;margin:0 -18px;padding:0 18px 10px" class="no-scrollbar ani">
+          <!-- Ticker items -->
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🧅</div><div style="background:var(--green-lt);color:var(--green-md);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">+6.8%</div></div>
+            <div class="micro mb4">Onion</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹2,840</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,22 14,18 28,20 42,14 56,8 70,4 80,2" fill="none" stroke="#2E6B3E" stroke-width="2" stroke-linecap="round"/><polyline points="0,22 14,18 28,20 42,14 56,8 70,4 80,2" fill="url(#gs)" stroke="none"/><defs><linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E6B3E" stop-opacity=".2"/><stop offset="100%" stop-color="#2E6B3E" stop-opacity="0"/></linearGradient></defs></svg>
+          </div>
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🍅</div><div style="background:var(--green-lt);color:var(--green-md);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">+16.4%</div></div>
+            <div class="micro mb4">Tomato</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹3,200</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,24 14,20 28,16 42,10 56,6 70,3 80,1" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🥔</div><div style="background:var(--red-lt);color:var(--red);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">-2.4%</div></div>
+            <div class="micro mb4">Potato</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹1,650</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,4 14,8 28,10 42,14 56,18 70,22 80,24" fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🧄</div><div style="background:var(--green-lt);color:var(--green-md);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">+6.8%</div></div>
+            <div class="micro mb4">Garlic</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹12,500</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,20 14,16 28,14 42,10 56,6 70,3 80,1" fill="none" stroke="#2E6B3E" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🌾</div><div style="background:var(--green-lt);color:var(--green-md);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">+1.2%</div></div>
+            <div class="micro mb4">Wheat</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹2,150</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,16 14,14 28,15 42,13 56,12 70,11 80,10" fill="none" stroke="#2E6B3E" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="tick" onclick="navTo('prices')">
+            <div class="row-b mb12"><div style="width:32px;height:32px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🌱</div><div style="background:var(--red-lt);color:var(--red);padding:2px 7px;border-radius:7px;font-size:9px;font-weight:700">-2.5%</div></div>
+            <div class="micro mb4">Soybean</div>
+            <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)">₹4,600</div>
+            <svg class="spark" viewBox="0 0 80 28"><polyline points="0,6 14,8 28,10 42,14 56,17 70,21 80,24" fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Hold / Sell Quick Section -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Hold or Sell?</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('holdsell')">Full Advisor →</span>
+        </div>
+        <div class="col g10 ani">
+          <div class="hs g12"><div style="font-size:30px">🧅</div><div style="flex:1"><div class="h4">Onion · प्याज</div><div style="font-size:12px;color:var(--muted);margin-top:2px">₹2,840 · Rising · Peak in 8 days</div><div class="prog-t mt8"><div class="prog-f pf-o" style="width:72%"></div></div></div><div class="sig sig-h">⏳ HOLD</div></div>
+          <div class="hs g12"><div style="font-size:30px">🥔</div><div style="flex:1"><div class="h4">Potato · आलू</div><div style="font-size:12px;color:var(--red);font-weight:600;margin-top:2px">₹1,650 · Falling · MSP risk in 12d</div><div class="prog-t mt8"><div class="prog-f pf-r" style="width:35%"></div></div></div><div class="sig sig-s">🚀 SELL</div></div>
+          <div class="hs g12"><div style="font-size:30px">🍅</div><div style="flex:1"><div class="h4">Tomato · टमाटर</div><div style="font-size:12px;color:var(--green);font-weight:700;margin-top:2px">₹3,200 · Peak season high today!</div><div class="prog-t mt8"><div class="prog-f pf-g" style="width:96%"></div></div></div><div class="sig sig-s">🔥 SELL</div></div>
+        </div>
+
+        <!-- Best Mandi section -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Optimal Mandi</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="navTo('mandi')">See Map →</span>
+        </div>
+
+        <!-- Gold winner card -->
+        <div class="gold-card mb12 ani" onclick="navTo('mandi')">
+          <div style="position:relative;z-index:1">
+            <div class="row g8 mb12"><div class="badge bg-o">🏆 Best Profit</div><div class="badge bg-w">Open Now</div></div>
+            <div class="row-b">
+              <div>
+                <div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:#fff;margin-bottom:4px">Indore Krishi Mandi</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.6)">📍 4.2 km · 5AM–8PM · APMC Certified</div>
+                <div class="row g8 mt12">
+                  <div class="badge bg-w" style="font-size:10px">🚛 ₹3,400 transport</div>
+                  <div class="badge bg-w" style="font-size:10px">⏱ 12 min</div>
+                </div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:var(--font-disp);font-size:26px;font-weight:700;color:#fff">₹2,880</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.5)">/quintal</div>
+                <div style="font-size:14px;font-weight:800;color:#a8e063;margin-top:4px">Net ₹2,710</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col g10 ani">
+          <div class="mc" onclick="navTo('mandi')"><div class="mc-rank mr2">2</div><div style="flex:1"><div class="h4">Dewas Mandi</div><div style="font-size:11px;color:var(--muted);margin-top:2px">📍 32.5 km · <span style="color:var(--red)">Closed · Opens 7AM</span></div></div><div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--green)">₹2,810</div><div style="font-size:10px;color:var(--gold);font-weight:700">Net ₹2,620</div></div></div>
+          <div class="mc" onclick="navTo('mandi')"><div class="mc-rank mr3">3</div><div style="flex:1"><div class="h4">Ujjain APMC</div><div style="font-size:11px;color:var(--muted);margin-top:2px">📍 54.0 km · <span style="color:var(--green)">Open Now</span></div></div><div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--green)">₹2,750</div><div style="font-size:10px;color:var(--gold);font-weight:700">Net ₹2,450</div></div></div>
+        </div>
+
+        <!-- Quick Profit Calculator teaser -->
+        <div class="dark-card mt20 mb12 ani" onclick="goTo('profit')">
+          <div style="position:relative;z-index:1">
+            <div class="row g8 mb12"><div class="badge bg-o">🧮 Calculator</div></div>
+            <div style="font-family:var(--font-disp);font-size:20px;font-weight:700;color:#fff;margin-bottom:6px">Net Profit Calculator</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:18px">Calculate exact profit after transport, commission & labour for any mandi.</div>
+            <button class="btn btn-o" style="height:46px;font-size:14px" onclick="goTo('profit')">Calculate Now →</button>
+          </div>
+        </div>
+
+        <!-- Market donut / distribution -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Portfolio Value</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="navTo('profile')">Manage →</span>
+        </div>
+        <div class="gcard card-p6 mb12 ani">
+          <div class="row g20">
+            <!-- Donut SVG -->
+            <div style="flex-shrink:0">
+              <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#F0EDE6" stroke-width="14"/>
+                <!-- Onion segment ~40% -->
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#2E6B3E" stroke-width="14" stroke-dasharray="95.5 143.2" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                <!-- Potato ~25% -->
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#C8A84B" stroke-width="14" stroke-dasharray="59.7 178.9" stroke-dashoffset="-97.5" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                <!-- Tomato ~20% -->
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#1565C0" stroke-width="14" stroke-dasharray="47.8 190.9" stroke-dashoffset="-159.2" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                <!-- Wheat ~15% -->
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#e67575" stroke-width="14" stroke-dasharray="35.8 202.8" stroke-dashoffset="-209" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                <text x="50" y="46" text-anchor="middle" font-family="Space Grotesk" font-size="11" font-weight="700" fill="#1A1208">₹4.8L</text>
+                <text x="50" y="58" text-anchor="middle" font-family="DM Sans" font-size="8" font-weight="600" fill="#6B5D4F">Total Value</text>
+              </svg>
+            </div>
+            <div class="col g8" style="flex:1">
+              <div class="row-b"><div class="row g6"><div style="width:10px;height:10px;background:var(--green);border-radius:3px"></div><div style="font-size:12px;font-weight:600">Onion · 40%</div></div><div style="font-family:var(--font-disp);font-size:13px;font-weight:700">₹1.92L</div></div>
+              <div class="row-b"><div class="row g6"><div style="width:10px;height:10px;background:var(--gold);border-radius:3px"></div><div style="font-size:12px;font-weight:600">Potato · 25%</div></div><div style="font-family:var(--font-disp);font-size:13px;font-weight:700">₹1.20L</div></div>
+              <div class="row-b"><div class="row g6"><div style="width:10px;height:10px;background:var(--blue);border-radius:3px"></div><div style="font-size:12px;font-weight:600">Tomato · 20%</div></div><div style="font-family:var(--font-disp);font-size:13px;font-weight:700">₹0.96L</div></div>
+              <div class="row-b"><div class="row g6"><div style="width:10px;height:10px;background:#e67575;border-radius:3px"></div><div style="font-size:12px;font-weight:600">Wheat · 15%</div></div><div style="font-family:var(--font-disp);font-size:13px;font-weight:700">₹0.72L</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schemes quick links -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Govt. Schemes</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('schemes')">View All →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px" class="ani">
+          <div class="sc-card" onclick="goTo('schemes')"><div class="sc-icon" style="background:var(--green-lt)">🌾</div><div class="h4">PM-KISAN</div><div style="font-size:12px;font-weight:800;color:var(--green);margin-top:2px">₹6,000/yr</div><div class="label mt4" style="color:var(--green);font-size:9px">✅ Enrolled</div></div>
+          <div class="sc-card" onclick="goTo('schemes')"><div class="sc-icon" style="background:var(--blue-lt)">🛡️</div><div class="h4">PMFBY</div><div style="font-size:12px;font-weight:800;color:var(--blue);margin-top:2px">₹2L cover</div><div style="font-size:10px;font-weight:800;color:var(--red);margin-top:4px">⚠️ Deadline Nov 30</div></div>
+          <div class="sc-card" onclick="goTo('schemes')"><div class="sc-icon" style="background:var(--gold-lt)">💳</div><div class="h4">KCC Loan</div><div style="font-size:12px;font-weight:800;color:var(--gold-dk);margin-top:2px">₹3L @ 4%</div><div class="label mt4" style="font-size:9px">Apply Now</div></div>
+          <div class="sc-card" onclick="goTo('schemes')"><div class="sc-icon" style="background:var(--green-lt)">☀️</div><div class="h4">KUSUM</div><div style="font-size:12px;font-weight:800;color:var(--green);margin-top:2px">90% subsidy</div><div class="label mt4" style="font-size:9px">Solar Pump</div></div>
+        </div>
+
+        <!-- AI Insights / SHAP quick view -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Why Onion Rising?</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('forecast')">Full Analysis →</span>
+        </div>
+        <div class="gcard card-p mb12 ani">
+          <div class="shap-row"><div class="shap-lbl">🌧️ Rainfall shortage</div><div class="shap-t"><div class="shap-f shap-p" style="width:78%">+312</div></div></div>
+          <div class="shap-row"><div class="shap-lbl">📦 Low arrivals</div><div class="shap-t"><div class="shap-f shap-p" style="width:62%">+248</div></div></div>
+          <div class="shap-row"><div class="shap-lbl">🪔 Festival demand</div><div class="shap-t"><div class="shap-f shap-p" style="width:55%">+220</div></div></div>
+          <div class="shap-row" style="margin-bottom:0"><div class="shap-lbl">⛽ Fuel cost</div><div class="shap-t"><div class="shap-f shap-n" style="width:18%">-72</div></div></div>
+        </div>
+
+        <!-- Community quick feed -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">Community Feed</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('community')">View All →</span>
+        </div>
+        <div class="post mb12 ani">
+          <div class="row g10 mb10"><div class="post-av" style="background:linear-gradient(135deg,var(--green),var(--green-dk))">R</div><div><div style="display:flex;gap:6px;align-items:center"><div style="font-size:14px;font-weight:700;color:var(--ink)">Ramesh Sharma</div><div class="badge bg-g" style="font-size:8px">✓ Verified</div></div><div style="font-size:11px;color:var(--muted);font-weight:600">Dewas · 2 hrs ago · 🧅 Onion</div></div></div>
+          <div style="font-size:13px;color:var(--ink2);line-height:1.6;font-weight:500">आज देवास मंडी में प्याज ₹2,480/qtl मिला। Grade A था तो ज़्यादा मिला! KrishiMitra ने 3 दिन पहले बताया था। 🙏</div>
+          <div style="display:inline-flex;align-items:center;gap:5px;background:var(--green-lt);color:var(--green);padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;margin-top:10px">₹2,480 · Dewas Mandi · Today</div>
+          <div style="display:flex;border-top:1px solid var(--border);padding-top:10px;margin-top:12px">
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">👍 24</div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">✅ Verify</div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">💬 Reply</div>
+          </div>
+        </div>
+
+        <!-- MSP Alert section -->
+        <div class="row-b mt20 mb12 ani">
+          <div class="h3">MSP Reference</div>
+          <span style="font-size:12px;font-weight:700;color:var(--gold);cursor:pointer" onclick="goTo('schemes')">Full List →</span>
+        </div>
+        <div class="gcard mb20 ani" style="overflow:hidden">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 14px;background:var(--bg2)">
+            <div class="micro">Crop</div><div class="micro" style="text-align:center">MSP</div><div class="micro" style="text-align:right">Market</div>
+          </div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🌾 Wheat</div><div style="text-align:center;font-size:13px;font-weight:700">₹2,275</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹2,150 ⚠️</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🥔 Potato</div><div style="text-align:center;font-size:13px;font-weight:700">₹1,500</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹1,650 ⚠️</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🫘 Arhar</div><div style="text-align:center;font-size:13px;font-weight:700">₹7,000</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--green)">₹9,500 ✅</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🫘 Chana</div><div style="text-align:center;font-size:13px;font-weight:700">₹5,440</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹5,800 ✅</div></div>
+        </div>
+
+      </div><!-- /inner -->
+    </div><!-- /screen-home -->
+
+    <!-- ═══ PRICES ═══ -->
+    <div class="screen" id="screen-prices">
+      <div class="inner">
+        <div class="row-b mb4">
+          <div class="col g4"><div class="micro">Real-time · AGMARKNET</div><div class="h1">Market Intel</div></div>
+          <div class="row g8">
+            <button class="btn btn-icon glass" onclick="openLang()" style="font-size:16px">🌐</button>
+            <button class="btn btn-icon glass" style="font-size:16px">🔍</button>
+          </div>
+        </div>
+        <!-- Search bar -->
+        <div class="glass row g10 mt12 mb16" style="padding:12px 16px;border-radius:14px">
+          <span style="color:rgba(107,93,79,.4);font-size:16px">🔍</span>
+          <input style="background:transparent;border:none;outline:none;font-size:14px;font-weight:600;font-family:var(--font-body);color:var(--ink);width:100%" placeholder="Search mandi or crop...">
+        </div>
+        <!-- Category chips -->
+        <div class="chips mb16">
+          <button class="chip chip-a">All</button>
+          <button class="chip chip-i" onclick="swapChip(this)">My Crops</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Vegetables 🥦</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Cereals 🌾</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Pulses 🫘</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Spices 🧄</button>
+        </div>
+        <div class="col g10">
+          <div class="pr" onclick="goTo('forecast')"><div class="pr-em">🧅</div><div style="flex:1"><div class="pr-name">Onion · प्याज</div><div class="pr-sub">📍 Indore APMC · 14 min ago</div></div><div style="text-align:right"><div class="pr-price">₹2,840</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 6.8%</div></div><div class="sig sig-h">HOLD</div></div>
+          <div class="pr" onclick="goTo('forecast')"><div class="pr-em">🥔</div><div style="flex:1"><div class="pr-name">Potato · आलू</div><div class="pr-sub">📍 Ujjain APMC · 1h ago</div></div><div style="text-align:right"><div class="pr-price">₹1,650</div><div class="pr-unit">/quintal</div><div class="chg chg-d">↓ 2.4%</div></div><div class="sig sig-s">SELL</div></div>
+          <div class="pr" onclick="goTo('forecast')"><div class="pr-em">🍅</div><div style="flex:1"><div class="pr-name">Tomato · टमाटर</div><div class="pr-sub">📍 Nashik APMC · 32 min ago</div></div><div style="text-align:right"><div class="pr-price">₹3,200</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 16.4%</div></div><div class="sig sig-s">SELL</div></div>
+          <div class="pr"><div class="pr-em">🌾</div><div style="flex:1"><div class="pr-name">Wheat · गेहूं</div><div class="pr-sub">📍 Sehore APMC · 5 min ago</div></div><div style="text-align:right"><div class="pr-price">₹2,150</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 1.2%</div></div><div class="sig sig-w">WAIT</div></div>
+          <div class="pr"><div class="pr-em">🌱</div><div style="flex:1"><div class="pr-name">Soybean · सोयाबीन</div><div class="pr-sub">📍 Ujjain APMC · 20 min ago</div></div><div style="text-align:right"><div class="pr-price">₹4,600</div><div class="pr-unit">/quintal</div><div class="chg chg-d">↓ 2.5%</div></div><div class="sig sig-s">SELL</div></div>
+          <div class="pr"><div class="pr-em">🧄</div><div style="flex:1"><div class="pr-name">Garlic · लहसुन</div><div class="pr-sub">📍 Mandsaur · 2 min ago</div></div><div style="text-align:right"><div class="pr-price">₹12,500</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 6.8%</div></div><div class="sig sig-s">SELL</div></div>
+          <div class="pr"><div class="pr-em">🌼</div><div style="flex:1"><div class="pr-name">Mustard · सरसों</div><div class="pr-sub">📍 Jaipur APMC · 45 min ago</div></div><div style="text-align:right"><div class="pr-price">₹5,200</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 0.9%</div></div><div class="sig sig-h">HOLD</div></div>
+          <div class="pr"><div class="pr-em">🌽</div><div style="flex:1"><div class="pr-name">Maize · मक्का</div><div class="pr-sub">📍 Chhindwara · 1h ago</div></div><div style="text-align:right"><div class="pr-price">₹2,050</div><div class="pr-unit">/quintal</div><div class="chg chg-d">↓ 0.7%</div></div><div class="sig sig-w">WAIT</div></div>
+          <div class="pr"><div class="pr-em">🫘</div><div style="flex:1"><div class="pr-name">Gram · चना</div><div class="pr-sub">📍 Vidisha APMC · 30 min ago</div></div><div style="text-align:right"><div class="pr-price">₹5,800</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 2.6%</div></div><div class="sig sig-h">HOLD</div></div>
+          <div class="pr"><div class="pr-em">🫚</div><div style="flex:1"><div class="pr-name">Ginger · अदरक</div><div class="pr-sub">📍 Kochi APMC · 12 min ago</div></div><div style="text-align:right"><div class="pr-price">₹8,500</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 4.9%</div></div><div class="sig sig-h">HOLD</div></div>
+          <div class="pr"><div class="pr-em">🍚</div><div style="flex:1"><div class="pr-name">Rice · चावल</div><div class="pr-sub">📍 Karnal APMC · 25 min ago</div></div><div style="text-align:right"><div class="pr-price">₹3,100</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 1.3%</div></div><div class="sig sig-w">WAIT</div></div>
+          <div class="pr"><div class="pr-em">🥜</div><div style="flex:1"><div class="pr-name">Groundnut · मूंगफली</div><div class="pr-sub">📍 Gondal APMC · 50 min ago</div></div><div style="text-align:right"><div class="pr-price">₹6,200</div><div class="pr-unit">/quintal</div><div class="chg chg-d">↓ 0.8%</div></div><div class="sig sig-w">WAIT</div></div>
+          <div class="pr"><div class="pr-em">🎋</div><div style="flex:1"><div class="pr-name">Sugarcane · गन्ना</div><div class="pr-sub">📍 Meerut APMC · 2h ago</div></div><div style="text-align:right"><div class="pr-price">₹380</div><div class="pr-unit">/quintal</div><div class="chg chg-f">→ 0%</div></div><div class="sig sig-w">WAIT</div></div>
+          <div class="pr"><div class="pr-em">🫘</div><div style="flex:1"><div class="pr-name">Tur (Arhar) · अरहर</div><div class="pr-sub">📍 Latur APMC · 15 min ago</div></div><div style="text-align:right"><div class="pr-price">₹9,500</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 2.1%</div></div><div class="sig sig-h">HOLD</div></div>
+          <div class="pr"><div class="pr-em">☁️</div><div style="flex:1"><div class="pr-name">Cotton · कपास</div><div class="pr-sub">📍 Rajkot APMC · 10 min ago</div></div><div style="text-align:right"><div class="pr-price">₹7,100</div><div class="pr-unit">/quintal</div><div class="chg chg-u">↑ 4.4%</div></div><div class="sig sig-h">HOLD</div></div>
+        </div>
+        <div style="text-align:center;padding:20px 0;font-size:11px;font-weight:600;color:rgba(107,93,79,.35)">Source: AGMARKNET · Updated 14 min ago · 165+ Mandis</div>
+      </div>
+    </div>
+
+    <!-- ═══ FORECAST ═══ -->
+    <div class="screen" id="screen-forecast">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">AI Forecast · अनुमान</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <div class="field-wrap"><label class="field-lbl">फसल चुनें · Select Crop</label>
+          <div class="sel-wrap"><select class="field" id="fcCrop" onchange="updateForecast()"><option value="onion">🧅 Onion · प्याज</option><option value="potato">🥔 Potato · आलू</option><option value="tomato">🍅 Tomato · टमाटर</option><option value="wheat">🌾 Wheat · गेहूं</option><option value="garlic">🧄 Garlic · लहसुन</option><option value="soybean">🌱 Soybean · सोयाबीन</option></select></div>
+        </div>
+
+        <!-- AI Rec hero -->
+        <div class="hero-card mb16">
+          <div style="position:relative;z-index:1">
+            <div class="row g8 mb12"><div class="badge bg-w">🤖 AI Recommendation</div><div class="badge bg-w">87% confidence</div></div>
+            <div id="fcAction" style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:#fff;margin-bottom:8px">⏳ Hold 8 more days</div>
+            <div id="fcReason" style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;max-width:92%">Today ₹2,840 → Day 8 expected ₹3,120. Low rainfall + Diwali demand pushing prices up.</div>
+            <div style="border-top:1px solid rgba(255,255,255,.15);margin-top:18px;padding-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;text-align:center">
+              <div><div class="micro" style="color:rgba(255,255,255,.4)">Today</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700;color:#fff;margin-top:4px">₹2,840</div></div>
+              <div><div class="micro" style="color:rgba(255,255,255,.4)">Target</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700;color:var(--gold);margin-top:4px" id="fcTarget">₹3,120</div></div>
+              <div><div class="micro" style="color:rgba(255,255,255,.4)">Gain</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700;color:#a8e063;margin-top:4px" id="fcGain">+₹280</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7-Day bar chart (large) -->
+        <div class="gcard card-p6 mb16">
+          <div class="row-b mb16">
+            <div class="h3" id="fcChartTitle">Onion — 7 Day Forecast</div>
+            <div class="row g4">
+              <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)"><div style="width:8px;height:8px;background:var(--gold);border-radius:2px"></div>Today</div>
+              <div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)"><div style="width:8px;height:8px;background:var(--green);border-radius:2px"></div>AI</div>
+            </div>
+          </div>
+          <!-- LARGE AREA CHART SVG -->
+          <div id="areaChartWrap" style="width:100%;height:140px;margin-bottom:8px">
+            <svg id="areaChart" width="100%" height="140" viewBox="0 0 340 140" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="aGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2E6B3E" stop-opacity=".3"/>
+                  <stop offset="100%" stop-color="#2E6B3E" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="pGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#C8A84B" stop-opacity=".25"/>
+                  <stop offset="100%" stop-color="#C8A84B" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              <line x1="0" y1="35" x2="340" y2="35" stroke="#00000008" stroke-width="1"/>
+              <line x1="0" y1="70" x2="340" y2="70" stroke="#00000008" stroke-width="1"/>
+              <line x1="0" y1="105" x2="340" y2="105" stroke="#00000008" stroke-width="1"/>
+              <!-- Area + Line -->
+              <path id="areaPath" d="" fill="url(#aGrad)"/>
+              <path id="linePath" d="" fill="none" stroke="#2E6B3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Prediction dashed -->
+              <path id="predPath" d="" fill="none" stroke="#C8A84B" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+              <!-- Dots -->
+              <g id="chartDots"></g>
+            </svg>
+          </div>
+          <!-- X labels -->
+          <div class="row-b" style="padding:0 4px">
+            <span class="fb-day">Today</span><span class="fb-day">Tue</span><span class="fb-day">Wed</span><span class="fb-day">Thu</span><span class="fb-day">Fri</span><span class="fb-day">Sat</span><span class="fb-day">Sun</span>
+          </div>
+        </div>
+
+        <!-- 3-horizon cards -->
+        <div class="row-b mb12"><div class="h3">Harvest Windows</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+          <div class="gcard card-p" style="text-align:center;border-radius:var(--r-md)"><div class="micro mb4">3 Days</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700" id="w3">₹2,910</div><div style="font-size:10px;font-weight:700;color:var(--green)" id="w3c">+2.4%</div></div>
+          <div style="text-align:center;background:var(--gold-lt);border:2px solid rgba(200,168,75,.35);border-radius:var(--r-md);padding:14px"><div class="micro mb4" style="color:var(--gold-dk)">7 Days ⭐</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700" id="w7">₹3,120</div><div style="font-size:10px;font-weight:700;color:var(--green)" id="w7c">+9.9%</div></div>
+          <div class="gcard card-p" style="text-align:center;border-radius:var(--r-md)"><div class="micro mb4">30 Days</div><div style="font-family:var(--font-disp);font-size:16px;font-weight:700" id="w30">₹2,720</div><div style="font-size:10px;font-weight:700;color:var(--red)" id="w30c">-4.2%</div></div>
+        </div>
+
+        <!-- SHAP Explainability -->
+        <div class="row-b mb12"><div class="h3">Why prices changing?</div><div class="badge bg-b">AI Explainability</div></div>
+        <div class="gcard card-p mb16">
+          <div class="shap-row"><div class="shap-lbl">🌧️ Rainfall shortage</div><div class="shap-t"><div class="shap-f shap-p" style="width:78%">+312</div></div></div>
+          <div class="shap-row"><div class="shap-lbl">📦 Low arrivals</div><div class="shap-t"><div class="shap-f shap-p" style="width:62%">+248</div></div></div>
+          <div class="shap-row"><div class="shap-lbl">🪔 Festival demand</div><div class="shap-t"><div class="shap-f shap-p" style="width:55%">+220</div></div></div>
+          <div class="shap-row"><div class="shap-lbl">📊 MSP floor</div><div class="shap-t"><div class="shap-f shap-p" style="width:28%">+112</div></div></div>
+          <div class="shap-row" style="margin:0"><div class="shap-lbl">⛽ Diesel cost</div><div class="shap-t"><div class="shap-f shap-n" style="width:18%">-72</div></div></div>
+        </div>
+
+        <!-- Model comparison -->
+        <div class="h3 mb12">Model Performance</div>
+        <div class="gcard card-p mb16">
+          <div class="col g10">
+            <div><div class="row-b mb4"><span style="font-size:13px;font-weight:600">LSTM+GRU Ensemble</span><span style="font-size:12px;font-weight:800;color:var(--green)">87.3%</span></div><div class="prog-t"><div class="prog-f pf-g" style="width:87%"></div></div></div>
+            <div><div class="row-b mb4"><span style="font-size:13px;font-weight:600">GRU (Solo)</span><span style="font-size:12px;font-weight:800;color:var(--green)">84.8%</span></div><div class="prog-t"><div class="prog-f pf-g" style="width:85%"></div></div></div>
+            <div><div class="row-b mb4"><span style="font-size:13px;font-weight:600">XGBoost Baseline</span><span style="font-size:12px;font-weight:800;color:var(--muted)">76.1%</span></div><div class="prog-t"><div class="prog-f pf-b" style="width:76%"></div></div></div>
+            <div><div class="row-b mb4"><span style="font-size:13px;font-weight:600">ARIMA Statistical</span><span style="font-size:12px;font-weight:800;color:var(--muted)">61.4%</span></div><div class="prog-t"><div class="prog-f pf-r" style="width:61%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SCAN ═══ -->
+    <div class="screen" id="screen-scan">
+      <div class="inner">
+        <div class="row-b mb4">
+          <div class="col g4"><div class="micro">Quality Analysis · On-Device AI</div><div class="h1">Crop Scanner</div></div>
+          <div class="row g8"><button class="btn btn-icon glass" onclick="openLang()" style="font-size:16px">🌐</button><button class="btn btn-icon glass" style="font-size:16px">🕑</button></div>
+        </div>
+        <div class="ab ab-b mt12 mb16"><div class="ab-icon">⚡</div><div><div class="ab-title">Works Offline! बिना Internet भी</div><div class="ab-body">EfficientNet-B0 runs on your device. No internet needed — works on 2G too.</div></div></div>
+
+        <!-- Main scan + AI prediction side by side on larger view, stacked on mobile -->
+        <div class="col g12">
+          <!-- Camera viewfinder — dark, reference style -->
+          <div style="background:#1A1208;border-radius:var(--r-2xl);overflow:hidden;height:260px;position:relative;display:flex;align-items:center;justify-content:center" onclick="startScan()" id="scanZoneMain">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(46,107,62,.08),transparent)"></div>
+            <!-- Corner accents -->
+            <div style="position:absolute;top:28px;left:28px;width:34px;height:34px;border-top:3px solid var(--gold);border-left:3px solid var(--gold);border-radius:6px 0 0 0"></div>
+            <div style="position:absolute;top:28px;right:28px;width:34px;height:34px;border-top:3px solid var(--gold);border-right:3px solid var(--gold);border-radius:0 6px 0 0"></div>
+            <div style="position:absolute;bottom:80px;left:28px;width:34px;height:34px;border-bottom:3px solid var(--gold);border-left:3px solid var(--gold);border-radius:0 0 0 6px"></div>
+            <div style="position:absolute;bottom:80px;right:28px;width:34px;height:34px;border-bottom:3px solid var(--gold);border-right:3px solid var(--gold);border-radius:0 0 6px 0"></div>
+            <!-- Center content -->
+            <div style="text-align:center" id="scanInner">
+              <div style="font-size:52px;opacity:.22">📷</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.5);font-weight:600;margin-top:10px">Tap to scan crop</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.28);margin-top:4px">🧅 🥔 🍅 🧄 🫚</div>
+            </div>
+            <!-- Shutter -->
+            <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:16px;align-items:center">
+              <div style="width:36px;height:36px;background:rgba(255,255,255,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px">🔍</div>
+              <div style="width:62px;height:62px;background:#fff;border-radius:50%;padding:4px;box-shadow:0 4px 20px rgba(0,0,0,.35)">
+                <div style="width:100%;height:100%;border:3px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center"><div style="width:30px;height:30px;background:var(--green);border-radius:50%"></div></div>
+              </div>
+              <div style="width:36px;height:36px;background:rgba(255,255,255,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px">🕑</div>
+            </div>
+          </div>
+
+          <!-- Controls row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="btn btn-out btn-full" style="height:48px;font-size:14px">📂 Gallery Upload</button>
+            <div class="glass row g12" style="padding:12px 16px;border-radius:var(--r-md)"><span style="font-size:22px">🧅</span><div><div class="micro mb2">Target Crop</div><div style="font-family:var(--font-disp);font-size:13px;font-weight:700">Onion</div></div></div>
+          </div>
+
+          <!-- Grade reference -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div style="text-align:center;padding:14px 10px;background:var(--green-lt);border-radius:14px;border:2px solid rgba(46,107,62,.25)"><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--green)">A</div><div style="font-size:11px;font-weight:800;color:var(--green)">+5% Price</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Premium</div></div>
+            <div style="text-align:center;padding:14px 10px;background:var(--gold-lt);border-radius:14px;border:2px solid rgba(200,168,75,.35)"><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--gold)">B</div><div style="font-size:11px;font-weight:800;color:var(--gold)">Base Price</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Standard</div></div>
+            <div style="text-align:center;padding:14px 10px;background:var(--red-lt);border-radius:14px;border:2px solid rgba(198,40,40,.25)"><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--red)">C</div><div style="font-size:11px;font-weight:800;color:var(--red)">-20% Price</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Reject</div></div>
+          </div>
+
+          <!-- AI Prediction ALONGSIDE scan (always visible) -->
+          <div class="h3">AI Price Prediction — By Grade</div>
+          <div class="gcard card-p">
+            <div class="micro mb12">For Onion at Indore APMC · Today</div>
+            <div class="col g12">
+              <div class="row-b" style="background:var(--green-lt);border-radius:12px;padding:12px 16px"><div class="row g10"><div style="font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--green)">A</div><div><div style="font-size:13px;font-weight:700;color:var(--ink)">Premium Grade</div><div style="font-size:11px;color:var(--muted)">Uniform, no damage</div></div></div><div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--green)">₹2,982</div><div style="font-size:10px;color:var(--green);font-weight:700">+₹142</div></div></div>
+              <div class="row-b" style="background:var(--gold-lt);border-radius:12px;padding:12px 16px"><div class="row g10"><div style="font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--gold)">B</div><div><div style="font-size:13px;font-weight:700;color:var(--ink)">Standard Grade</div><div style="font-size:11px;color:var(--muted)">Minor blemishes OK</div></div></div><div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--gold-dk)">₹2,840</div><div style="font-size:10px;color:var(--muted);font-weight:700">Base price</div></div></div>
+              <div class="row-b" style="background:var(--red-lt);border-radius:12px;padding:12px 16px"><div class="row g10"><div style="font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--red)">C</div><div><div style="font-size:13px;font-weight:700;color:var(--ink)">Low Grade</div><div style="font-size:11px;color:var(--muted)">Damaged / rotting</div></div></div><div style="text-align:right"><div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--red)">₹2,272</div><div style="font-size:10px;color:var(--red);font-weight:700">-₹568</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scan result area -->
+        <div id="scanResult" style="display:none;margin-top:16px">
+          <div style="background:linear-gradient(145deg,var(--green),var(--green-dk));border-radius:var(--r-xl);padding:22px;color:#fff;text-align:center;margin-bottom:16px">
+            <div style="font-size:52px;margin-bottom:10px">🧅</div>
+            <div style="font-family:var(--font-disp);font-size:24px;font-weight:700;margin-bottom:4px">GRADE A — PREMIUM</div>
+            <div style="font-size:12px;opacity:.7">Confidence: 96% · EfficientNet-B0 · On-device</div>
+            <div style="margin-top:18px;background:rgba(255,255,255,.15);border-radius:14px;padding:16px">
+              <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:6px">Estimated Value at Indore APMC</div>
+              <div style="font-family:var(--font-disp);font-size:36px;font-weight:700;color:var(--gold)">₹2,982<span style="font-size:14px;color:rgba(255,255,255,.5)">/q</span></div>
+            </div>
+          </div>
+          <div class="ab ab-g mb16"><div class="ab-icon">✅</div><div><div class="ab-title">No disease detected</div><div class="ab-body">Your crop looks healthy. No visible rot, discoloration, or pest damage found.</div></div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="btn btn-g btn-full" onclick="navTo('mandi')">🗺️ Find Mandi</button>
+            <button class="btn btn-out btn-full" onclick="resetScan()">📷 Scan Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROFIT CALCULATOR ═══ -->
+    <div class="screen" id="screen-profit">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Net Profit Calculator</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <div class="micro mb16">Know your actual earnings after ALL costs</div>
+
+        <div class="gcard card-p6 mb12">
+          <div style="font-family:var(--font-disp);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px">1. Crop Details</div>
+          <div class="field-wrap"><label class="field-lbl">Select Commodity</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="cropBtns">
+              <button class="field" style="background:var(--green);color:#fff;border:none;cursor:pointer;font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--r-md)" onclick="selCrop(this,'Onion',2840)">🧅 Onion</button>
+              <button class="field" style="cursor:pointer;font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--r-md)" onclick="selCrop(this,'Potato',1650)">🥔 Potato</button>
+              <button class="field" style="cursor:pointer;font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--r-md)" onclick="selCrop(this,'Tomato',3200)">🍅 Tomato</button>
+              <button class="field" style="cursor:pointer;font-weight:700;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;gap:6px;border-radius:var(--r-md)" onclick="selCrop(this,'Garlic',12500)">🧄 Garlic</button>
+            </div>
+          </div>
+          <div class="field-wrap"><label class="field-lbl">Quantity (Quintals)</label><input class="field" type="number" id="calcQty" value="100" placeholder="e.g. 100" oninput="calcLive()"></div>
+          <div class="field-wrap" style="margin:0"><label class="field-lbl">Vehicle Type</label>
+            <div class="sel-wrap"><select class="field" id="calcVehicle" onchange="calcLive()"><option value="3400">🚜 Tractor Trolley</option><option value="5200">🚛 Mini Truck (Chhota Hathi)</option><option value="8500">🏗️ Large Truck</option></select></div>
+          </div>
+        </div>
+
+        <div class="gcard card-p6 mb12">
+          <div class="row-b mb14"><div style="font-family:var(--font-disp);font-size:15px;font-weight:700;color:var(--ink)">2. Mandi Prices</div><div class="badge bg-o">Compare 3 Mandis</div></div>
+          <div class="col g10">
+            <div style="background:rgba(46,107,62,.04);border:2px solid rgba(46,107,62,.2);border-radius:14px;padding:14px">
+              <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">Indore Krishi Mandi</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#fff;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:6px"><span style="color:var(--muted);font-weight:700">₹</span><input type="number" id="m1p" value="2880" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:100%;color:var(--ink)" oninput="calcLive()"></div>
+                <div style="background:#fff;border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><input type="number" id="m1c" value="6" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:50%;color:var(--ink)" oninput="calcLive()"><span style="color:var(--muted);font-weight:700">% comm.</span></div>
+              </div>
+            </div>
+            <div style="border:1.5px solid var(--border);border-radius:14px;padding:14px">
+              <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">Dewas Mandi</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:var(--bg);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:6px"><span style="color:var(--muted);font-weight:700">₹</span><input type="number" id="m2p" value="2810" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:100%;color:var(--ink)" oninput="calcLive()"></div>
+                <div style="background:var(--bg);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><input type="number" id="m2c" value="5" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:50%;color:var(--ink)" oninput="calcLive()"><span style="color:var(--muted);font-weight:700">% comm.</span></div>
+              </div>
+            </div>
+            <div style="border:1.5px solid var(--border);border-radius:14px;padding:14px">
+              <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">Ujjain APMC</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:var(--bg);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:6px"><span style="color:var(--muted);font-weight:700">₹</span><input type="number" id="m3p" value="2750" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:100%;color:var(--ink)" oninput="calcLive()"></div>
+                <div style="background:var(--bg);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between"><input type="number" id="m3c" value="8" style="background:transparent;border:none;outline:none;font-family:var(--font-disp);font-weight:700;font-size:15px;width:50%;color:var(--ink)" oninput="calcLive()"><span style="color:var(--muted);font-weight:700">% comm.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live results -->
+        <div id="calcResults">
+          <!-- Winner banner -->
+          <div class="hero-card mb12">
+            <div style="position:relative;z-index:1">
+              <div class="micro mb8" style="color:rgba(255,255,255,.45)">✅ Best Choice</div>
+              <div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:#fff;margin-bottom:14px">You earn <span style="color:var(--gold)" id="gainAmt">₹2,340</span> more at Indore</div>
+              <button onclick="navTo('mandi')" class="btn btn-w btn-full" style="height:50px;font-family:var(--font-disp);font-weight:700">Go to Indore Mandi →</button>
+            </div>
+          </div>
+
+          <!-- Breakdown table -->
+          <div class="gcard card-p6 mb12">
+            <div style="font-family:var(--font-disp);font-size:14px;font-weight:700;margin-bottom:14px">Cost Breakdown — Indore</div>
+            <div class="cr"><div class="cr-l">Gross Revenue</div><div class="cr-v" id="grossRev">₹2,88,000</div></div>
+            <div class="cr"><div class="cr-l">Mandi Commission (6%)</div><div class="cr-v loss" id="commAmt">-₹17,280</div></div>
+            <div class="cr"><div class="cr-l">Transport</div><div class="cr-v loss" id="transAmt">-₹3,400</div></div>
+            <div class="cr"><div class="cr-l">Labour & Loading</div><div class="cr-v loss" id="labourAmt">-₹1,500</div></div>
+            <div style="height:1.5px;background:rgba(0,0,0,.07);margin:8px 0"></div>
+            <div class="cr" style="border:none;padding-top:12px"><div class="cr-l" style="font-size:15px;font-weight:800">Net Profit 💚</div><div class="cr-v profit" id="netProfit">₹2,65,820</div></div>
+          </div>
+
+          <!-- Comparison bars -->
+          <div class="gcard card-p6 mb16">
+            <div style="font-family:var(--font-disp);font-size:14px;font-weight:700;margin-bottom:14px">Mandi Comparison</div>
+            <div class="col g12">
+              <div><div class="row-b mb6"><span style="font-size:13px;font-weight:700">🏆 Indore</span><span style="font-family:var(--font-disp);font-size:14px;font-weight:700;color:var(--green)" id="net1">₹2,65,820</span></div><div class="prog-t"><div class="prog-f pf-g" style="width:100%" id="bar1"></div></div></div>
+              <div><div class="row-b mb6"><span style="font-size:13px;font-weight:700">2️⃣ Dewas</span><span style="font-family:var(--font-disp);font-size:14px;font-weight:700" id="net2">₹2,63,480</span></div><div class="prog-t"><div class="prog-f pf-o" style="width:94%" id="bar2"></div></div></div>
+              <div><div class="row-b mb6"><span style="font-size:13px;font-weight:700">3️⃣ Ujjain</span><span style="font-family:var(--font-disp);font-size:14px;font-weight:700" id="net3">₹2,46,500</span></div><div class="prog-t"><div class="prog-f pf-b" style="width:89%" id="bar3"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MANDI ═══ -->
+    <div class="screen" id="screen-mandi">
+      <div class="inner">
+        <div class="row-b mb4">
+          <div class="col g4"><div class="micro">Logistics Optimization</div><div class="h1">Mandi Finder</div></div>
+          <div class="row g8"><button class="btn btn-icon glass" onclick="openLang()" style="font-size:16px">🌐</button><button class="btn btn-icon glass" style="font-size:16px">🔍</button></div>
+        </div>
+        <div class="chips mt12 mb16">
+          <div class="badge bg-g row g6" style="padding:8px 14px;font-size:11px">🧅 Onion ✕</div>
+          <button class="chip chip-i" onclick="swapChip(this)">By Distance</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Best Price</button>
+          <button class="chip chip-i" onclick="swapChip(this)">Open Now</button>
+        </div>
+
+        <!-- Map -->
+        <div style="background:linear-gradient(145deg,#d4edda,#c8e6d0);border-radius:var(--r-xl);height:230px;position:relative;overflow:hidden;margin-bottom:20px;border:1px solid rgba(255,255,255,.6)">
+          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);background-size:38px 38px"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(212,237,218,.8))"></div>
+          <!-- Roads -->
+          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 430 230"><path d="M0,115 Q107,80 215,115 Q323,150 430,115" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="3"/><path d="M215,0 Q215,115 215,230" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/></svg>
+          <!-- Pins -->
+          <div style="position:absolute;top:36%;left:38%;display:flex;flex-direction:column;align-items:center">
+            <div class="glass" style="padding:5px 10px;border-radius:10px;margin-bottom:6px;white-space:nowrap;box-shadow:var(--shadow-m)"><div style="font-family:var(--font-disp);font-size:11px;font-weight:700;color:var(--green)">₹2,880</div><div style="font-size:10px;font-weight:600;color:var(--ink)">Indore Mandi</div></div>
+            <div style="width:14px;height:14px;background:var(--green);border-radius:50%;border:3px solid #fff;box-shadow:var(--shadow-g);position:relative"><div style="position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(46,107,62,.3)" class="ping"></div></div>
+          </div>
+          <div style="position:absolute;top:24%;left:18%;display:flex;flex-direction:column;align-items:center">
+            <div style="width:11px;height:11px;background:var(--gold);border-radius:50%;border:2px solid #fff"></div>
+            <div style="font-size:9px;font-weight:700;color:var(--ink);margin-top:3px">Dewas</div>
+          </div>
+          <div style="position:absolute;top:55%;left:65%;display:flex;flex-direction:column;align-items:center">
+            <div style="width:11px;height:11px;background:var(--muted);border-radius:50%;border:2px solid #fff"></div>
+            <div style="font-size:9px;font-weight:700;color:var(--ink);margin-top:3px">Ujjain</div>
+          </div>
+          <!-- Your location -->
+          <div style="position:absolute;top:50%;left:44%;width:10px;height:10px;background:var(--blue);border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 4px rgba(21,101,192,.2)"></div>
+          <div style="position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px">
+            <div class="glass" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;font-weight:700;color:var(--ink)">+</div>
+            <div class="glass" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;font-weight:700;color:var(--ink)">−</div>
+          </div>
+          <div style="position:absolute;bottom:12px;left:12px" class="glass"><div style="padding:6px 10px;font-size:10px;font-weight:700;color:var(--muted)">📍 Your location: Indore, MP</div></div>
+        </div>
+
+        <div class="row-b mb12"><div class="h3">Optimal Destinations</div>
+          <div class="glass row" style="padding:4px;border-radius:10px">
+            <button style="background:#fff;border:none;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;color:var(--green);cursor:pointer;box-shadow:var(--shadow-s)">Nearest</button>
+            <button style="background:transparent;border:none;padding:6px 14px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer">Best Price</button>
+          </div>
+        </div>
+
+        <div class="col g10">
+          <!-- Best -->
+          <div class="mc" style="border:2px solid rgba(46,107,62,.25);background:rgba(46,107,62,.02)">
+            <div class="mc-rank mr1">1</div>
+            <div style="flex:1"><div class="row g8 mb4"><div class="h4">Indore Krishi Mandi</div><div class="badge bg-g" style="font-size:8px">Best Profit</div></div><div style="font-size:11px;color:var(--muted);font-weight:600">📍 4.2 km · <span style="color:var(--green-md)">Open Now</span> · 5AM–8PM</div><div class="row g6 mt8"><div class="badge bg-m">🚛 ₹3,400</div><div class="badge bg-m">⏱ 12 min</div><div class="badge bg-g">APMC ✓</div></div></div>
+            <div style="text-align:right"><div style="font-family:var(--font-disp);font-size:19px;font-weight:700;color:var(--green)">₹2,880</div><div style="font-size:10px;color:var(--gold);font-weight:700;margin-top:2px">Net ₹2,710</div></div>
+          </div>
+          <div class="mc">
+            <div class="mc-rank mr2">2</div>
+            <div style="flex:1"><div class="h4 mb4">Dewas Mandi</div><div style="font-size:11px;color:var(--muted)">📍 32.5 km · <span style="color:var(--red)">Closed · Opens 7AM</span></div><div class="row g6 mt8"><div class="badge bg-m">🚛 ₹6,200</div><div class="badge bg-m">⏱ 45 min</div></div></div>
+            <div style="text-align:right"><div style="font-family:var(--font-disp);font-size:19px;font-weight:700;color:var(--green)">₹2,810</div><div style="font-size:10px;color:var(--gold);font-weight:700;margin-top:2px">Net ₹2,620</div></div>
+          </div>
+          <div class="mc">
+            <div class="mc-rank mr3">3</div>
+            <div style="flex:1"><div class="h4 mb4">Ujjain APMC</div><div style="font-size:11px;color:var(--muted)">📍 54.0 km · <span style="color:var(--green-md)">Open Now</span> · 7AM–5PM</div><div class="row g6 mt8"><div class="badge bg-m">🚛 ₹8,100</div><div class="badge bg-m">⏱ 1h 10m</div></div></div>
+            <div style="text-align:right"><div style="font-family:var(--font-disp);font-size:19px;font-weight:700;color:var(--green)">₹2,750</div><div style="font-size:10px;color:var(--gold);font-weight:700;margin-top:2px">Net ₹2,450</div></div>
+          </div>
+          <div class="mc" style="opacity:.55">
+            <div class="mc-rank mr3">4</div>
+            <div style="flex:1"><div class="h4 mb4">Shajapur Mandi</div><div style="font-size:11px;color:var(--muted)">📍 92 km · <span style="color:var(--red)">Closed</span></div></div>
+            <div style="text-align:right"><div style="font-family:var(--font-disp);font-size:19px;font-weight:700;color:var(--muted)">₹2,680</div><div style="font-size:10px;color:var(--red);font-weight:700;margin-top:2px">Closed</div></div>
+          </div>
+        </div>
+        <button class="btn btn-g btn-full mt20" onclick="goTo('profit')">🧮 Compare Net Profit →</button>
+      </div>
+    </div>
+
+    <!-- ═══ VOICE ═══ -->
+    <div class="screen" id="screen-voice">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Voice AI · बोलिए</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div style="padding:28px 18px 0;text-align:center">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);max-width:260px;margin:0 auto;line-height:1.7">Powered by Bhashini API · हिंदी, मराठी, ਪੰਜਾਬੀ and 19 more Indian languages</div>
+        <div style="margin:24px 0"><div class="v-orb" id="voiceOrb" onclick="toggleVoice()">🎙️</div></div>
+        <div style="font-family:var(--font-disp);font-size:18px;font-weight:700;color:var(--ink)" id="vStatus">Tap to Speak</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">हिंदी में बोलिए — बिना Internet भी काम करता है</div>
+      </div>
+      <!-- Quick asks -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;padding:20px 18px 0">
+        <button class="qa" onclick="sendVoice('आज प्याज का भाव क्या है?')">आज प्याज का भाव?</button>
+        <button class="qa" onclick="sendVoice('सबसे अच्छी मंडी कौन सी है?')">सबसे अच्छी मंडी?</button>
+        <button class="qa" onclick="sendVoice('क्या आलू अभी बेचूं?')">आलू बेचूं?</button>
+        <button class="qa" onclick="sendVoice('7 दिन का अनुमान बताओ')">7-दिन अनुमान</button>
+        <button class="qa" onclick="sendVoice('सरकारी योजनाएं क्या हैं?')">सरकारी योजनाएं?</button>
+        <button class="qa" onclick="sendVoice('देवास मंडी का भाव बताओ')">देवास मंडी?</button>
+      </div>
+      <div class="col g12" id="chatList" style="padding:16px 18px 0"></div>
+    </div>
+
+    <!-- ═══ HOLD/SELL ═══ -->
+    <div class="screen" id="screen-holdsell">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Hold / Sell Advisor</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <div class="ab ab-o mb16"><div class="ab-icon">🤖</div><div><div class="ab-title">AI Advisor — आज के लिए</div><div class="ab-body">LSTM+GRU Ensemble · 87.3% accuracy · Updated every 4 hours from AGMARKNET</div></div></div>
+        <div class="col g10 mb20">
+          <div class="hs g12"><div style="font-size:32px">🧅</div><div style="flex:1"><div class="h4">Onion · प्याज</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Rising · Peak in 8 days</div><div class="prog-t mt8"><div class="prog-f pf-o" style="width:72%"></div></div><div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:3px">Peak window 72% — Hold for max gain</div></div><div class="sig sig-h">⏳ HOLD</div></div>
+          <div class="hs g12"><div style="font-size:32px">🥔</div><div style="flex:1"><div class="h4">Potato · आलू</div><div style="font-size:12px;color:var(--red);font-weight:600;margin-top:2px">Falling · MSP risk in 12 days</div><div class="prog-t mt8"><div class="prog-f pf-r" style="width:35%"></div></div><div style="font-size:10px;color:var(--red);font-weight:700;margin-top:3px">⚠️ MSP ₹1,500 approaching — sell now</div></div><div class="sig sig-s">🚀 SELL</div></div>
+          <div class="hs g12"><div style="font-size:32px">🍅</div><div style="flex:1"><div class="h4">Tomato · टमाटर</div><div style="font-size:12px;color:var(--green);font-weight:700;margin-top:2px">At seasonal peak today!</div><div class="prog-t mt8"><div class="prog-f pf-g" style="width:96%"></div></div><div style="font-size:10px;color:var(--green);font-weight:700;margin-top:3px">Sell before weekend — price will drop</div></div><div class="sig sig-s">🔥 NOW</div></div>
+          <div class="hs g12"><div style="font-size:32px">🌾</div><div style="flex:1"><div class="h4">Wheat · गेहूं</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Stable · Rabi uplift Nov–Dec</div><div class="prog-t mt8"><div class="prog-f pf-b" style="width:52%"></div></div><div style="font-size:10px;color:var(--blue);font-weight:700;margin-top:3px">Wait for post-Rabi season price lift</div></div><div class="sig sig-w">⏱ WAIT</div></div>
+          <div class="hs g12"><div style="font-size:32px">🧄</div><div style="flex:1"><div class="h4">Garlic · लहसुन</div><div style="font-size:12px;color:var(--green);font-weight:700;margin-top:2px">₹12,500 — 52-week ALL-TIME HIGH!</div><div class="prog-t mt8"><div class="prog-f pf-g" style="width:100%"></div></div><div style="font-size:10px;color:var(--green);font-weight:700;margin-top:3px">⭐ Peak! Sell by tomorrow</div></div><div class="sig sig-s">💥 NOW</div></div>
+          <div class="hs g12"><div style="font-size:32px">🌱</div><div style="flex:1"><div class="h4">Soybean · सोयाबीन</div><div style="font-size:12px;color:var(--red);font-weight:600;margin-top:2px">Declining · buffer stock high</div><div class="prog-t mt8"><div class="prog-f pf-r" style="width:42%"></div></div><div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:3px">Sell now before further decline</div></div><div class="sig sig-s">SELL</div></div>
+        </div>
+        <!-- Storage Advisor -->
+        <div class="h3 mb12">Storage Advisor · भंडारण</div>
+        <div class="hero-card mb12">
+          <div style="position:relative;z-index:1">
+            <div class="micro mb8" style="color:rgba(255,255,255,.4)">📦 Onion Storage Calculator</div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:16px">
+              <div style="text-align:center"><div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:4px">Sell Today</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:#fff">₹2,840</div><div style="font-size:11px;color:rgba(255,255,255,.4)">/qtl</div></div>
+              <div style="font-size:24px;color:rgba(255,255,255,.4)">→</div>
+              <div style="text-align:center"><div style="font-size:11px;color:rgba(168,224,99,.9);font-weight:600;margin-bottom:4px">After 8 Days</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:#a8e063">₹3,120</div><div style="font-size:11px;color:rgba(168,224,99,.6)">/qtl (+₹280)</div></div>
+            </div>
+            <div style="background:rgba(255,255,255,.12);border-radius:14px;padding:14px">
+              <div style="font-size:15px;font-weight:800;color:#a8e063">100 qtl → Extra gain: +₹24,000</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:3px">After ₹4,000 storage cost deducted. Confidence: 83%</div>
+            </div>
+          </div>
+        </div>
+        <!-- Cold storage list -->
+        <div class="h3 mb12">Cold Storage Facilities</div>
+        <div class="col g10">
+          <div class="gcard card-p row-b"><div><div class="h4">MP State Cold Storage, Indore</div><div style="font-size:11px;color:var(--muted)">6 km · 500 ton cap. · ₹0.45/kg/day</div></div><div class="badge bg-g">Available</div></div>
+          <div class="gcard card-p row-b"><div><div class="h4">Private Storage, Dewas</div><div style="font-size:11px;color:var(--muted)">48 km · 200 ton cap. · ₹0.55/kg/day</div></div><div class="badge bg-g">Available</div></div>
+          <div class="gcard card-p row-b"><div><div class="h4">NWR Govt. Warehouse</div><div style="font-size:11px;color:var(--muted)">12 km · Unlimited · ₹0.30/kg/day</div></div><div class="badge bg-b">Book Online</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SCHEMES ═══ -->
+    <div class="screen" id="screen-schemes">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Govt. Schemes · योजनाएं</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <div class="ab ab-g mb16"><div class="ab-icon">✅</div><div><div class="ab-title">3 Schemes — You are eligible!</div><div class="ab-body">Ramesh Patel · Indore MP · 3.5 acres · Small & Marginal Farmer</div></div></div>
+        <div class="col g12">
+          <div class="sc-card"><div class="sc-icon" style="background:var(--green-lt)">🌾</div><div class="h4">PM-KISAN Samman Nidhi</div><div style="font-size:13px;font-weight:800;color:var(--green);margin-top:2px">₹6,000 / year</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Every 4 months, ₹2,000 directly in bank account. For all small & marginal farmers.</div><div class="sc-enrolled">✅ Already Enrolled · Check Status</div></div>
+          <div class="sc-card"><div class="sc-icon" style="background:var(--blue-lt)">🛡️</div><div class="h4">PMFBY Fasal Bima</div><div style="font-size:13px;font-weight:800;color:var(--blue);margin-top:2px">Up to ₹2 Lakh Cover</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Crop loss due to natural disaster, pests or disease — covered at very low premium.</div><div style="background:var(--red-lt);border-radius:9px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--red);margin-bottom:12px">⚠️ Deadline: November 30!</div><button class="btn btn-g btn-sm">📋 Apply Now</button></div>
+          <div class="sc-card"><div class="sc-icon" style="background:var(--gold-lt)">💳</div><div class="h4">Kisan Credit Card (KCC)</div><div style="font-size:13px;font-weight:800;color:var(--gold-dk);margin-top:2px">₹3 Lakh Loan @ 4% p.a.</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Revolving credit for crop production at near-zero interest. Timely repayment → interest waived.</div><button class="btn btn-g btn-sm">🏦 Apply at Bank</button></div>
+          <div class="sc-card"><div class="sc-icon" style="background:var(--green-lt)">☀️</div><div class="h4">KUSUM Solar Pump</div><div style="font-size:13px;font-weight:800;color:var(--green);margin-top:2px">90% Subsidy</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Get solar agricultural pump at 90% government subsidy. Zero electricity bill for 25 years.</div><button class="btn btn-g btn-sm">📝 Check Eligibility</button></div>
+          <div class="sc-card"><div class="sc-icon" style="background:var(--bg2)">📦</div><div class="h4">NWR Pledge Loan</div><div style="font-size:13px;font-weight:800;color:var(--muted);margin-top:2px">70% of Crop Value</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Store in govt. warehouse → get receipt → pledge for instant loan without selling.</div><button class="btn btn-ghost btn-sm">🏛️ Contact WDRA</button></div>
+          <div class="sc-card"><div class="sc-icon" style="background:var(--blue-lt)">🌐</div><div class="h4">e-NAM Trading</div><div style="font-size:13px;font-weight:800;color:var(--blue);margin-top:2px">Nationwide Mandi Access</div><div style="font-size:12px;color:var(--muted);line-height:1.55;margin:8px 0">Sell produce on electronic National Agriculture Market platform across 23 states.</div><button class="btn btn-g btn-sm">🌐 Register on e-NAM</button></div>
+        </div>
+        <!-- MSP table -->
+        <div class="h3 mt20 mb12">MSP Reference — Rabi 2024–25</div>
+        <div class="gcard mb16" style="overflow:hidden">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 14px;background:var(--bg2)"><div class="micro">Crop</div><div class="micro" style="text-align:center">MSP ₹/qtl</div><div class="micro" style="text-align:right">Market</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🌾 Wheat</div><div style="text-align:center;font-size:13px;font-weight:700">₹2,275</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹2,150 ⚠️</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🫘 Chana</div><div style="text-align:center;font-size:13px;font-weight:700">₹5,440</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹5,800 ⚠️</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🫘 Arhar Dal</div><div style="text-align:center;font-size:13px;font-weight:700">₹7,000</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--green)">₹9,500 ✅</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🫘 Moong Dal</div><div style="text-align:center;font-size:13px;font-weight:700">₹8,558</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--gold-dk)">₹8,200 ➡</div></div>
+          <div class="msp-row"><div style="font-size:13px;font-weight:700">🥔 Potato</div><div style="text-align:center;font-size:13px;font-weight:700">₹1,500</div><div style="text-align:right;font-size:13px;font-weight:800;color:var(--red)">₹1,650 ⚠️</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ALERTS ═══ -->
+    <div class="screen" id="screen-alerts">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Alerts & Updates</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <div class="chips mb16"><button class="chip chip-a">All</button><button class="chip chip-i" onclick="swapChip(this)">Price Alerts</button><button class="chip chip-i" onclick="swapChip(this)">AI Updates</button><button class="chip chip-i" onclick="swapChip(this)">Mandi News</button></div>
+        <div class="col g12">
+          <div class="gcard card-p6"><div class="row g12 mb12"><div style="width:52px;height:52px;background:var(--green-lt);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">📈</div><div style="flex:1"><div class="row-b"><div class="h4">Onion price alert triggered!</div><div class="micro" style="color:var(--muted-lt)">2 MIN</div></div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55">Price hit <strong style="color:var(--green)">₹2,840</strong> at Indore. You set alert at ₹2,800.</div></div></div><div class="row g10"><button class="btn btn-g btn-sm">View Price</button><button style="background:transparent;border:none;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">Dismiss</button></div></div>
+          <div class="gcard card-p6"><div class="row g12 mb12"><div style="width:52px;height:52px;background:var(--gold-lt);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">⚡</div><div style="flex:1"><div class="row-b"><div class="h4">Best time to sell Garlic this week</div><div class="micro" style="color:var(--muted-lt)">1 HR</div></div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55">AI predicts Thursday–Friday peak at <strong style="color:var(--ink)">₹13,200/q</strong>. Act now.</div></div></div><button class="btn btn-o btn-sm">See Prediction</button></div>
+          <div class="gcard card-p6"><div class="row g12 mb12"><div style="width:52px;height:52px;background:var(--blue-lt);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">📰</div><div style="flex:1"><div class="row-b"><div class="h4">Onion arrivals down 8% at Lasalgaon</div><div class="micro" style="color:var(--muted-lt)">3 HR</div></div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55">Lower supply may push prices up this week. Major distributors holding stocks.</div></div></div><button class="btn btn-ghost btn-sm">Read More</button></div>
+          <div class="gcard card-p6"><div class="row g12 mb12"><div style="width:52px;height:52px;background:var(--red-lt);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">⚠️</div><div style="flex:1"><div class="row-b"><div class="h4">Potato MSP Warning</div><div class="micro" style="color:var(--muted-lt)">5 HR</div></div><div style="font-size:13px;color:var(--muted);margin-top:4px;line-height:1.55">Current price ₹1,650 is approaching MSP ₹1,500. Sell before prices dip below.</div></div></div><button class="btn btn-g btn-sm" onclick="navTo('prices')">Sell Now</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ COMMUNITY ═══ -->
+    <div class="screen" id="screen-community">
+      <div class="ph"><button class="ph-back" onclick="goBack()">←</button><div class="ph-title">Community Feed</div><button class="ph-btn" onclick="openLang()">🌐</button></div>
+      <div class="inner">
+        <!-- Post input -->
+        <div class="gcard card-p mb16">
+          <div class="row g10 mb10"><div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-dk));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0">R</div><input class="field" style="height:42px;flex:1" placeholder="📝 Share a price report or ask a question..."></div>
+          <div class="row g8"><button class="btn btn-g btn-sm">📤 Post</button><button class="btn btn-ghost btn-sm">📷 Photo</button></div>
+        </div>
+        <div class="col g12">
+          <div class="post"><div class="row g10 mb10"><div class="post-av" style="background:linear-gradient(135deg,var(--green),var(--green-dk))">R</div><div><div class="row g6"><div style="font-size:14px;font-weight:700;color:var(--ink)">Ramesh Sharma</div><div class="badge bg-g" style="font-size:8px">✓ Verified</div></div><div style="font-size:11px;color:var(--muted);font-weight:600">Dewas · 2h · 🧅 Onion</div></div></div><div style="font-size:13px;color:var(--ink2);line-height:1.6;font-weight:500">आज देवास मंडी में प्याज ₹2,480/qtl मिला। Grade A था तो ज़्यादा मिला! KrishiMitra ने 3 दिन पहले बताया था 🙏</div><div style="display:inline-flex;align-items:center;gap:5px;background:var(--green-lt);color:var(--green);padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;margin-top:10px">₹2,480 · Dewas · Today</div><div style="display:flex;border-top:1px solid var(--border);padding-top:10px;margin-top:12px"><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">👍 24</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">✅ Verify</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">💬 Reply</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">📢 Share</div></div></div>
+          <div class="post"><div class="row g10 mb10"><div class="post-av" style="background:linear-gradient(135deg,#c8952a,#9a6800)">S</div><div><div style="font-size:14px;font-weight:700;color:var(--ink)">Suresh Patidar</div><div style="font-size:11px;color:var(--muted);font-weight:600">Ujjain · 5h · 🥔 Potato</div></div></div><div style="font-size:13px;color:var(--ink2);line-height:1.6;font-weight:500">उज्जैन में आलू का भाव गिर रहा है — ₹940–980 चल रहा है। जो रोक के बैठे हैं, जल्दी बेचो भाई। MSP के पास आ रहा है। ⚠️</div><div style="display:inline-flex;align-items:center;gap:5px;background:var(--red-lt);color:var(--red);padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;margin-top:10px">₹960 · Ujjain · MSP Alert</div><div style="display:flex;border-top:1px solid var(--border);padding-top:10px;margin-top:12px"><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">👍 41</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">✅ Verify</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">💬 6</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">📢</div></div></div>
+          <div class="post"><div class="row g10 mb10"><div class="post-av" style="background:linear-gradient(135deg,#1565c0,#0d47a1)">M</div><div><div class="row g6"><div style="font-size:14px;font-weight:700;color:var(--ink)">Mukesh Yadav</div><div class="badge bg-g" style="font-size:8px">✓ Verified</div></div><div style="font-size:11px;color:var(--muted);font-weight:600">Indore · Yesterday · 🍅 Tomato</div></div></div><div style="font-size:13px;color:var(--ink2);line-height:1.6;font-weight:500">टमाटर ₹1,650 → ₹3,200 हो गया! मैंने तुरंत 80 qtl बेच दिया। KrishiMitra ने 3 दिन पहले ही alert दे दिया था! 🙏🌾</div><div style="display:inline-flex;align-items:center;gap:5px;background:var(--green-lt);color:var(--green);padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;margin-top:10px">₹3,200 · Indore · Peak!</div><div style="display:flex;border-top:1px solid var(--border);padding-top:10px;margin-top:12px"><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">👍 87</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">✅ 12</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">💬 Reply</div><div style="flex:1;display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer">📢</div></div></div>
+        </div>
+        <!-- Community stats -->
+        <div class="h3 mt20 mb12">Community Stats</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="gcard card-p" style="text-align:center"><div style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:var(--green)">12,400+</div><div class="micro mt4">Verified Farmers</div></div>
+          <div class="gcard card-p" style="text-align:center"><div style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:var(--gold-dk)">4,800+</div><div class="micro mt4">Price Reports Today</div></div>
+          <div class="gcard card-p" style="text-align:center"><div style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:var(--blue)">165</div><div class="micro mt4">Mandis Covered</div></div>
+          <div class="gcard card-p" style="text-align:center"><div style="font-family:var(--font-disp);font-size:24px;font-weight:700;color:var(--ink)">98%</div><div class="micro mt4">Report Accuracy</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROFILE ═══ -->
+    <div class="screen" id="screen-profile">
+      <div class="inner">
+        <div class="row-b mb16">
+          <div class="h1">Farmer Profile</div>
+          <div class="row g8"><button class="btn btn-icon glass" onclick="openLang()" style="font-size:16px">🌐</button><button class="btn btn-icon glass" style="font-size:18px">🔔</button></div>
+        </div>
+
+        <!-- Profile card -->
+        <div class="gcard card-p6 mb16" style="text-align:center;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:rgba(46,107,62,.05);border-radius:50%;transform:translate(40px,-40px)"></div>
+          <div style="width:80px;height:80px;border-radius:24px;background:linear-gradient(145deg,var(--green),var(--green-dk));display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-size:32px;font-weight:700;color:#fff;margin:0 auto 16px;border:4px solid #fff;box-shadow:var(--shadow-g)">R</div>
+          <div style="font-family:var(--font-disp);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px">Ramesh Patel ✅</div>
+          <div style="font-size:13px;color:var(--muted)">Indore, Madhya Pradesh</div>
+          <div class="row g8 mt12" style="justify-content:center;flex-wrap:wrap">
+            <div class="badge bg-g">🧅 Onion</div>
+            <div class="badge bg-g">🌾 Wheat</div>
+            <div class="badge bg-g">🥔 Potato</div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          <div class="gcard" style="padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:6px">🔔</div><div class="micro mb4">Alerts</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--green)">3</div></div>
+          <div class="gcard" style="padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:6px">📍</div><div class="micro mb4">Saved Mandis</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--green)">3</div></div>
+          <div class="gcard" style="padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:6px">📷</div><div class="micro mb4">Crop Scans</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--green)">12</div></div>
+          <div class="gcard" style="padding:16px;text-align:center"><div style="font-size:22px;margin-bottom:6px">📈</div><div class="micro mb4">Active Days</div><div style="font-family:var(--font-disp);font-size:22px;font-weight:700;color:var(--green)">47</div></div>
+        </div>
+
+        <!-- Crop portfolio -->
+        <div class="row-b mb12"><div class="h3">Crop Portfolio</div><button style="background:transparent;border:none;font-size:12px;font-weight:700;color:var(--green);cursor:pointer;background:var(--green-lt);padding:5px 12px;border-radius:99px">+ Add Crop</button></div>
+        <div class="col g10 mb16">
+          <div class="port-item"><div style="width:40px;height:40px;background:var(--green-lt);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🧅</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--ink)">Onion</div><div style="font-size:11px;color:var(--muted)">2 acres · 100 quintal expected</div></div><div class="badge bg-o">₹1.92L</div></div>
+          <div class="port-item"><div style="width:40px;height:40px;background:var(--gold-lt);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🥔</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--ink)">Potato</div><div style="font-size:11px;color:var(--muted)">1 acre · 80 quintal expected</div></div><div class="badge bg-g">₹1.20L</div></div>
+          <div class="port-item"><div style="width:40px;height:40px;background:var(--green-lt);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🌾</div><div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--ink)">Wheat</div><div style="font-size:11px;color:var(--muted)">0.5 acres · 30 quintal expected</div></div><div class="badge bg-m">₹0.72L</div></div>
+        </div>
+
+        <!-- Language -->
+        <div class="gcard card-p row-b mb12" style="cursor:pointer" onclick="openLang()">
+          <div class="row g12"><div style="width:42px;height:42px;background:var(--green-lt);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px">🌐</div><div><div style="font-size:14px;font-weight:700;color:var(--ink)">Language · भाषा</div><div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:2px" id="curLang">हिंदी (Hindi)</div></div></div>
+          <span style="font-size:18px;color:var(--muted)">›</span>
+        </div>
+
+        <!-- Settings -->
+        <div class="micro mb12">Account Management</div>
+        <div class="col g10 mb16">
+          <button class="gcard row-b card-p" style="border:none;cursor:pointer;text-align:left;font-family:var(--font-body)" onclick="goTo('community')"><div class="row g12"><div style="width:40px;height:40px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-s)">👥</div><div style="font-size:14px;font-weight:700;color:var(--ink)">Community Feed</div></div><span style="color:var(--muted)">›</span></button>
+          <button class="gcard row-b card-p" style="border:none;cursor:pointer;text-align:left;font-family:var(--font-body)" onclick="goTo('holdsell')"><div class="row g12"><div style="width:40px;height:40px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-s)">⏳</div><div style="font-size:14px;font-weight:700;color:var(--ink)">Hold / Sell Advisor</div></div><span style="color:var(--muted)">›</span></button>
+          <button class="gcard row-b card-p" style="border:none;cursor:pointer;text-align:left;font-family:var(--font-body)" onclick="goTo('schemes')"><div class="row g12"><div style="width:40px;height:40px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-s)">🏛️</div><div style="font-size:14px;font-weight:700;color:var(--ink)">Govt. Schemes</div></div><span style="color:var(--muted)">›</span></button>
+          <button class="gcard row-b card-p" style="border:none;cursor:pointer;text-align:left;font-family:var(--font-body)"><div class="row g12"><div style="width:40px;height:40px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-s)">🔔</div><div style="font-size:14px;font-weight:700;color:var(--ink)">Notification Settings</div></div><span style="color:var(--muted)">›</span></button>
+          <button class="gcard row-b card-p" style="border:none;cursor:pointer;text-align:left;font-family:var(--font-body)"><div class="row g12"><div style="width:40px;height:40px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--shadow-s)">🔒</div><div style="font-size:14px;font-weight:700;color:var(--ink)">Privacy & Security</div></div><span style="color:var(--muted)">›</span></button>
+        </div>
+
+        <button class="btn btn-full btn-lg mb16" style="background:transparent;border:2px solid var(--red);color:var(--red);font-family:var(--font-body)" onclick="doLogout()">Sign Out Securely</button>
+        <div style="text-align:center;padding-bottom:20px;font-size:11px;font-weight:600;color:rgba(107,93,79,.3)">KrishiMitra v4.0 · AGMARKNET · IMD · Bhashini · OLA Maps</div>
+      </div>
+    </div>
+
+  </div><!-- /sw -->
+
+  <!-- ══ BOTTOM NAV ══ -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <button class="nt active" id="nt-home" onclick="navTo('home')"><span class="nt-icon">🏠</span><span class="nt-lbl">Home</span><div class="nt-dot"></div></button>
+      <button class="nt" id="nt-prices" onclick="navTo('prices')" style="position:relative"><span class="nt-icon" style="position:relative">📈<span style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background:var(--gold);border-radius:50%;border:1.5px solid #fff"></span></span><span class="nt-lbl">भाव</span></button>
+      <button class="nt-special" onclick="navTo('scan')">📷</button>
+      <button class="nt" id="nt-mandi" onclick="navTo('mandi')"><span class="nt-icon">🗺️</span><span class="nt-lbl">Mandi</span></button>
+      <button class="nt" id="nt-profile" onclick="navTo('profile')"><span class="nt-icon">👤</span><span class="nt-lbl">Profile</span></button>
+    </div>
+  </div>
+
+  <!-- Floating Voice -->
+  <button onclick="navTo('voice')" style="position:absolute;bottom:90px;right:18px;width:50px;height:50px;background:var(--green);border-radius:16px;border:none;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:var(--shadow-g);z-index:40;border:3px solid rgba(247,244,239,.6);transition:all .2s" onmousedown="this.style.transform='scale(.92)'" onmouseup="this.style.transform=''">🎙️</button>
+
+</div><!-- /shell -->
+
+<script>
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+const NAV_IDS = ['home','prices','mandi','profile'];
+let navHistory = ['home'];
+let calcCropPrice = 2880;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('screen-'+id);
+  if(el){el.classList.add('active')}
+  document.getElementById('sw').scrollTop=0;
+}
+function setNav(id){
+  document.querySelectorAll('.nt').forEach(t=>{t.classList.remove('active');const d=t.querySelector('.nt-dot');if(d)d.style.display='none'});
+  const t=document.getElementById('nt-'+id);
+  if(t){t.classList.add('active');const d=t.querySelector('.nt-dot');if(d)d.style.display='block'}
+}
+function navTo(id){
+  navHistory=[id];showScreen(id);setNav(NAV_IDS.includes(id)?id:'home');
+}
+function goTo(id){
+  navHistory.push(id);showScreen(id);
+}
+function goBack(){
+  if(navHistory.length>1){navHistory.pop();const p=navHistory[navHistory.length-1];showScreen(p);setNav(NAV_IDS.includes(p)?p:'home')}
+}
+
+// ══════════════════════════════════════════
+// LOGIN
+// ══════════════════════════════════════════
+function showLoginForm(){document.getElementById('splashScreen').style.display='none';document.getElementById('loginForm').style.display='flex';document.getElementById('loginForm').style.flexDirection='column'}
+function showSplash(){document.getElementById('splashScreen').style.display='flex';document.getElementById('loginForm').style.display='none'}
+function doLogin(){
+  const btn=document.getElementById('loginBtn');
+  btn.textContent='Signing in...';btn.disabled=true;
+  setTimeout(()=>{document.getElementById('loginWrap').style.display='none';document.getElementById('appShell').style.display='flex';calcLive()},1400);
+}
+function doLogout(){document.getElementById('appShell').style.display='none';document.getElementById('loginWrap').style.display='flex';showSplash()}
+
+// ══════════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════════
+function openLang(){document.getElementById('langOverlay').classList.add('open')}
+function closeLang(){document.getElementById('langOverlay').classList.remove('open')}
+function closeLangBg(e){if(e.target===document.getElementById('langOverlay'))closeLang()}
+function setLang(code,name,flag,el){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  const lbl=document.getElementById('curLang');
+  if(lbl)lbl.textContent=name+' ('+code.toUpperCase()+')';
+  setTimeout(closeLang,380);
+}
+
+// ══════════════════════════════════════════
+// CHIP SELECTOR
+// ══════════════════════════════════════════
+function swapChip(el){
+  const row=el.closest('.chips');
+  if(row){row.querySelectorAll('.chip').forEach(c=>{c.classList.remove('chip-a');c.classList.add('chip-i')})}
+  el.classList.add('chip-a');el.classList.remove('chip-i');
+}
+
+// ══════════════════════════════════════════
+// FORECAST DATA + AREA CHART
+// ══════════════════════════════════════════
+const FD={
+  onion:{action:'⏳ Hold 8 more days',reason:'Today ₹2,840 → Day 8: ₹3,120 expected. Low rainfall + Diwali demand from Maharashtra & MP.',title:'Onion — 7 Day Forecast',target:'₹3,120',gain:'+₹280',vals:[2840,2910,2870,3010,3060,3100,3120],w3:'₹2,910',w3c:'+2.4%',w7:'₹3,120',w7c:'+9.9%',w30:'₹2,720',w30c:'-4.2%'},
+  potato:{action:'🚀 Sell Today!',reason:'Price falling ₹1,650 → ₹1,520. MSP ₹1,500 approaching. Every day of delay costs money.',title:'Potato — 7 Day Forecast',target:'₹1,520',gain:'-₹130',vals:[1650,1630,1610,1590,1570,1540,1520],w3:'₹1,610',w3c:'-2.4%',w7:'₹1,520',w7c:'-7.9%',w30:'₹1,400',w30c:'-15%'},
+  tomato:{action:'🔥 Sell Immediately!',reason:'₹3,200 — seasonal peak today. Arrivals surge expected next week. Prices will fall 20–30%.',title:'Tomato — 7 Day Forecast',target:'₹2,560',gain:'-₹640',vals:[3200,3100,2900,2700,2500,2600,2560],w3:'₹2,900',w3c:'-9%',w7:'₹2,560',w7c:'-20%',w30:'₹2,200',w30c:'-31%'},
+  wheat:{action:'⏱ Wait until November',reason:'Stable at ₹2,150. Post-Rabi season uplift expected Nov–Dec. Patience pays here.',title:'Wheat — 7 Day Forecast',target:'₹2,350',gain:'+₹200',vals:[2150,2160,2170,2180,2200,2220,2240],w3:'₹2,180',w3c:'+1.4%',w7:'₹2,240',w7c:'+4.2%',w30:'₹2,350',w30c:'+9.3%'},
+  garlic:{action:'💥 Sell by Tomorrow!',reason:'₹12,500 — 52-week all-time high. New arrivals expected week 2. Prices will normalize fast.',title:'Garlic — 7 Day Forecast',target:'₹10,000',gain:'-₹2,500',vals:[12500,12300,11800,11200,10800,10400,10000],w3:'₹11,800',w3c:'-5.6%',w7:'₹10,000',w7c:'-20%',w30:'₹9,200',w30c:'-26%'},
+  soybean:{action:'📉 Sell This Week',reason:'₹4,600 declining. High buffer stock + import pressure pushing prices down steadily.',title:'Soybean — 7 Day Forecast',target:'₹4,200',gain:'-₹400',vals:[4600,4560,4520,4480,4440,4380,4340],w3:'₹4,520',w3c:'-1.7%',w7:'₹4,340',w7c:'-5.7%',w30:'₹4,100',w30c:'-11%'},
+};
+function updateForecast(){
+  const k=document.getElementById('fcCrop').value;
+  const d=FD[k];
+  document.getElementById('fcAction').textContent=d.action;
+  document.getElementById('fcReason').textContent=d.reason;
+  document.getElementById('fcChartTitle').textContent=d.title;
+  document.getElementById('fcTarget').textContent=d.target;
+  document.getElementById('fcGain').textContent=d.gain;
+  document.getElementById('fcGain').style.color=d.gain.startsWith('+')?'#a8e063':'#ff8a80';
+  document.getElementById('w3').textContent=d.w3;document.getElementById('w3c').textContent=d.w3c;document.getElementById('w3c').style.color=d.w3c.startsWith('+')?'var(--green)':'var(--red)';
+  document.getElementById('w7').textContent=d.w7;document.getElementById('w7c').textContent=d.w7c;document.getElementById('w7c').style.color=d.w7c.startsWith('+')?'var(--green)':'var(--red)';
+  document.getElementById('w30').textContent=d.w30;document.getElementById('w30c').textContent=d.w30c;document.getElementById('w30c').style.color=d.w30c.startsWith('+')?'var(--green)':'var(--red)';
+  drawAreaChart(d.vals);
+}
+function drawAreaChart(vals){
+  const svg=document.getElementById('areaChart');
+  if(!svg)return;
+  const W=340,H=130,PAD=10;
+  const mn=Math.min(...vals)-200,mx=Math.max(...vals)+200;
+  const pts=vals.map((v,i)=>{
+    const x=PAD+(i/(vals.length-1))*(W-PAD*2);
+    const y=H-PAD-((v-mn)/(mx-mn))*(H-PAD*2);
+    return[x,y];
+  });
+  const line=pts.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
+  const area=line+` L${pts[pts.length-1][0]},${H} L${pts[0][0]},${H} Z`;
+  document.getElementById('linePath').setAttribute('d',line);
+  document.getElementById('areaPath').setAttribute('d',area);
+  // Prediction dashed (last 2 points)
+  const pp=pts.slice(-3);
+  const pline=pp.map((p,i)=>(i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
+  document.getElementById('predPath').setAttribute('d',pline);
+  // Dots
+  const dotsG=document.getElementById('chartDots');
+  dotsG.innerHTML='';
+  pts.forEach((p,i)=>{
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r',i===0?5:3.5);
+    c.setAttribute('fill',i===0?'#C8A84B':'#2E6B3E');c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','1.5');
+    dotsG.appendChild(c);
+  });
+}
+
+// ══════════════════════════════════════════
+// CALCULATOR
+// ══════════════════════════════════════════
+function selCrop(btn,name,price){
+  document.querySelectorAll('#cropBtns button').forEach(b=>{b.style.background='';b.style.color='';b.style.border=''});
+  btn.style.background='var(--green)';btn.style.color='#fff';btn.style.border='none';
+  calcCropPrice=price;
+  document.getElementById('m1p').value=price;
+  document.getElementById('m2p').value=Math.round(price*0.975);
+  document.getElementById('m3p').value=Math.round(price*0.955);
+  calcLive();
+}
+function calcLive(){
+  const qty=parseInt(document.getElementById('calcQty').value)||100;
+  const trans=parseInt(document.getElementById('calcVehicle').value)||3400;
+  const p1=parseInt(document.getElementById('m1p').value)||2880;
+  const c1=parseFloat(document.getElementById('m1c').value)||6;
+  const p2=parseInt(document.getElementById('m2p').value)||2810;
+  const c2=parseFloat(document.getElementById('m2c').value)||5;
+  const p3=parseInt(document.getElementById('m3p').value)||2750;
+  const c3=parseFloat(document.getElementById('m3c').value)||8;
+  const lab=qty*15;
+  const net1=Math.round(qty*p1*(1-c1/100)-trans-lab);
+  const net2=Math.round(qty*p2*(1-c2/100)-Math.round(trans*1.7)-lab);
+  const net3=Math.round(qty*p3*(1-c3/100)-Math.round(trans*2.2)-lab);
+  const best=Math.max(net1,net2,net3);
+  const gainOver=best-Math.min(net2,net3);
+  document.getElementById('grossRev').textContent='₹'+formatN(qty*p1);
+  document.getElementById('commAmt').textContent='-₹'+formatN(Math.round(qty*p1*c1/100));
+  document.getElementById('transAmt').textContent='-₹'+formatN(trans);
+  document.getElementById('labourAmt').textContent='-₹'+formatN(lab);
+  document.getElementById('netProfit').textContent='₹'+formatN(net1);
+  document.getElementById('gainAmt').textContent='₹'+formatN(gainOver);
+  document.getElementById('net1').textContent='₹'+formatN(net1);
+  document.getElementById('net2').textContent='₹'+formatN(net2);
+  document.getElementById('net3').textContent='₹'+formatN(net3);
+  const maxNet=Math.max(net1,net2,net3);
+  document.getElementById('bar1').style.width=Math.round(net1/maxNet*100)+'%';
+  document.getElementById('bar2').style.width=Math.round(net2/maxNet*100)+'%';
+  document.getElementById('bar3').style.width=Math.round(net3/maxNet*100)+'%';
+}
+function formatN(n){return n.toLocaleString('en-IN')}
+
+// ══════════════════════════════════════════
+// SCAN
+// ══════════════════════════════════════════
+function startScan(){
+  const inner=document.getElementById('scanInner');
+  inner.innerHTML='<div class="spin" style="font-size:36px;color:var(--gold)">⚙️</div><div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:600;margin-top:10px">Analyzing crop...</div><div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px">EfficientNet-B0 · On-device AI</div>';
+  setTimeout(()=>{
+    inner.innerHTML='<div style="font-size:36px">✅</div><div style="font-size:13px;color:rgba(255,255,255,.7);font-weight:600;margin-top:8px">Grade A detected!</div>';
+    document.getElementById('scanResult').style.display='block';
+  },2400);
+}
+function resetScan(){
+  document.getElementById('scanInner').innerHTML='<div style="font-size:52px;opacity:.22">📷</div><div style="font-size:13px;color:rgba(255,255,255,.5);font-weight:600;margin-top:10px">Tap to scan crop</div><div style="font-size:11px;color:rgba(255,255,255,.28);margin-top:4px">🧅 🥔 🍅 🧄 🫚</div>';
+  document.getElementById('scanResult').style.display='none';
+}
+
+// ══════════════════════════════════════════
+// VOICE
+// ══════════════════════════════════════════
+let voiceOn=false;
+const VR={
+  'आज प्याज का भाव क्या है?':'आज <strong>इंदौर मंडी में प्याज ₹2,840</strong> प्रति क्विंटल है। कल से 6.8% ज़्यादा है। AI के अनुसार 8 दिन में ₹3,120 हो सकता है — <strong>अभी मत बेचिए।</strong> 📈',
+  'सबसे अच्छी मंडी कौन सी है?':'<strong>इंदौर कृषि मंडी</strong> सबसे अच्छी है — ₹2,880/qtl, सिर्फ 4.2 km दूर। शुद्ध मुनाफा: <strong>₹2,710/qtl</strong> · देवास (₹2,810) दूसरे नंबर पर है। 🏆',
+  'क्या आलू अभी बेचूं?':'<strong>हाँ, आलू तुरंत बेचिए!</strong> ₹1,650 है और गिर रहा है। MSP ₹1,500 के करीब आ रहा है। देरी नुकसानदेह होगी। ⚠️',
+  '7 दिन का अनुमान बताओ':'🧅 प्याज: ₹2,840 → ₹3,120 (+9.9%) — HOLD\n🥔 आलू: ₹1,650 → ₹1,520 (-7.9%) — SELL\n🍅 टमाटर: ₹3,200 → ₹2,560 (-20%) — SELL TODAY\n🌾 गेहूं: ₹2,150 → ₹2,350 (+9.3%) — WAIT',
+  'सरकारी योजनाएं क्या हैं?':'आप <strong>3 योजनाओं</strong> के लिए पात्र हैं:\n1️⃣ PM-KISAN — ₹6,000/वर्ष (enrolled)\n2️⃣ PMFBY फसल बीमा — Deadline 30 Nov! ⚠️\n3️⃣ KCC लोन — ₹3L @ 4% सालाना',
+  'देवास मंडी का भाव बताओ':'<strong>देवास APMC</strong> में आज:\n🧅 प्याज: ₹2,810/qtl\n🥔 आलू: ₹1,580/qtl\n📍 32.5 km दूर · अभी बंद है (सुबह 7 बजे खुलेगी)',
+};
+function toggleVoice(){
+  voiceOn=!voiceOn;
+  const orb=document.getElementById('voiceOrb');
+  const st=document.getElementById('vStatus');
+  if(voiceOn){orb.classList.add('on');orb.textContent='🔴';st.textContent='सुन रहा हूँ...';
+    setTimeout(()=>{voiceOn=false;orb.classList.remove('on');orb.textContent='🎙️';st.textContent='Tap to Speak'},3000);
+  }else{orb.classList.remove('on');orb.textContent='🎙️';st.textContent='Tap to Speak'}
+}
+function sendVoice(q){
+  const list=document.getElementById('chatList');
+  const you=document.createElement('div');
+  you.style.display='flex';you.style.justifyContent='flex-end';
+  you.innerHTML='<div class="chat-you">'+q+'</div>';
+  list.appendChild(you);
+  setTimeout(()=>{
+    const bot=document.createElement('div');
+    const r=VR[q]||'एक क्षण रुकिए — जानकारी ला रहा हूँ... 🔄';
+    bot.innerHTML='<div class="chat-meta">KrishiMitra AI · Bhashini</div><div class="chat-bot">'+r.replace(/\n/g,'<br>')+'</div>';
+    list.appendChild(bot);list.scrollTop=list.scrollHeight;
+  },700);
+  list.scrollTop=list.scrollHeight;
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+window.addEventListener('DOMContentLoaded',()=>{
+  // Initialize chart with default data
+  setTimeout(()=>drawAreaChart(FD.onion.vals),100);
+  calcLive();
+  // Initial chat message
+  const list=document.getElementById('chatList');
+  if(list&&list.children.length===0){
+    const bot=document.createElement('div');
+    bot.innerHTML='<div class="chat-meta">KrishiMitra AI · Bhashini</div><div class="chat-bot">नमस्ते! मैं आपका KrishiMitra AI हूँ। हिंदी में कोई भी सवाल पूछिए — मंडी भाव, AI अनुमान, या सरकारी योजनाएं। 🌾</div>';
+    list.appendChild(bot);
+  }
+});
+</script>
